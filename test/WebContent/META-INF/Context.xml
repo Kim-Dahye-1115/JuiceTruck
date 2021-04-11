@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+   <Resource 
+      name="jdbc/JuiceDB"
+      auth="Container"
+      type="javax.sql.DataSource"
+      driverClassName="com.mysql.jdbc.Driver"
+      url="jdbc:mysql://localhost:3306/juice"
+      username="root"
+      password="1234"
+      
+      loginTimeout = "10"
+      maxWait="5000"
+	  validationQuery="select 1 from dual"       
+   />
+</Context>
+
+
+
+
+
+
