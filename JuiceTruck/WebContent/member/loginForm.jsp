@@ -34,7 +34,7 @@
 		    <br>
 		    <div class="col-md-7 ml-auto mr-auto fileadd6">
 		    <input type="submit" value="로그인" class="btn btn-primary" > 
-		    <a href="https://kauth.kakao.com/oauth/authorize?client_id=c9cffd9530ad8456ac8cc3f58d0088b3&redirect_uri=http://localhost:8088/Juice/oauth/kakao?cmd=callback&response_type=code">
+		    <a href="https://kauth.kakao.com/oauth/authorize?client_id=c9cffd9530ad8456ac8cc3f58d0088b3&redirect_uri=http://itwillbs10.cafe24.com/Juice/oauth/kakao?cmd=callback&response_type=code">
 		      <img height="38px" width="150px" src="./images/kakao_login_medium_narrow.png" />
 		    </a> <br>
 		    <!-- <a href="https://developers.kakao.com/logout"> 로그아웃 </a> -->

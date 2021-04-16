@@ -37,7 +37,7 @@ public class KakaocallbackAction implements Action {
 		
 		String bodyData="grant_type=authorization_code&";
 		bodyData += "client_id=c9cffd9530ad8456ac8cc3f58d0088b3&"; //자기 REST API키 입력
-		bodyData += "redirect_uri=http://localhost:8088/Juice/GoodsList.ag"; // redirect_uri 접속경로
+		bodyData += "redirect_uri=http://itwillbs10.cafe24.com/Juice/GoodsList.ag"; // redirect_uri 접속경로
 		//bodyData += "code="+code;
 	
 		//Stream 연결
