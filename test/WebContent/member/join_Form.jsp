@@ -1,6 +1,8 @@
 <!-- 회원가입 페이지(이메일로 가입하기 선택) -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,9 +12,6 @@
 		
 			var checkEmail = -1;
 			var checkNick  = -1;  
-			
-			
-
 			var numberCheck = 0;
 			var phoneCheck = -1;
 			var intervalVar = undefined;
@@ -41,7 +40,7 @@
 							num_check1 = v.numStr;
 							doTimer();
 							// alert(num_check1);
-							alert("인증번호 발송 완료");
+							alert("인증번호가 발송되었습니다.");
 							}else{
 							alert("사용 중인 전화번호입니다.");
 							}
@@ -122,6 +121,7 @@
 					
 					alert('인증이 완료되었습니다.');
 					phoneCheck = 0;
+					
 					
 					$('#pckcom').hide();
 					$('#number').hide();
@@ -232,7 +232,7 @@
 		       }
 		       
 		       if(!(checkEmail == 0) ){
-					  alert("중복 확인을 체크해 주세요.");
+					  alert("이메일 중복 확인을 체크해 주세요.");
 			    	   return false;
 				  }
 
@@ -270,7 +270,7 @@
 				
 
 				 if(!(checkNick == 0) ){
-					  alert("중복 확인을 체크해 주세요.");
+					  alert("닉네임 중복 확인을 체크해 주세요.");
 			    	   return false;
 				  }
 
@@ -281,7 +281,7 @@
 			           phone.focus();
 			           return false;
 			    }
-				if(!check(rePhone, phone, "11자리 숫자를 입력하세요.")) {
+				if(!check(rePhone, phone, "전화번호는 11자리 숫자로 입력하세요.")) {
 			           return false;
 			    }
 				
@@ -322,9 +322,10 @@
 	</head>
 	
 	
-	<body>
-		<!-- 헤더 -->
-		<!-- 헤더 -->
+<body class="join-page ">
+<!-- 헤더 -->
+<jsp:include page="../inc/top.jsp"/>
+<!-- 헤더 -->
 		
 		<%
 		  String email = (String) request.getAttribute("email");
@@ -333,43 +334,74 @@
 		  }
 		%>
 		
-		<fieldset>
-			<form method="post" action="./JoinAction.me" enctype="multipart/form-data" id="fr" onsubmit="return validate();">
-				<h2> 주스 트럭(Juice Truck) 회원 가입 </h2>
-				<img id="imgPre" src="./profile_img_b.png" alt="" width="200" height="200"><br>
-				<input type="file" name="user_img" id="user_img"><br>
+		<div class="member-join">
+		<div class="container">
+		<div class="section section-text">
+			<div class="row">
+				<div class="col-md-9 ml-auto mr-auto">
+				<div class="col-md-6 ml-auto mr-auto">
+				<h3 class="title memberup" >주스 트럭 회원 가입</h3>
+				</div>
+				<form method="post" action="./JoinAction.me" enctype="multipart/form-data" id="fr" onsubmit="return validate();">
+				<div class="memberup">
+			<div>
+				<img id="imgPre" src="./person.png" width="150" height="150" alt="Circle Image" class="img-raised rounded-circle memberbtn image5">
+			</div>
+			<div>
+				<span class="btn btn-primary btn-fab btn-fab-mini btn-file btn-round">
+					<span class="fileinput-exists"> 
+						<i class="material-icons">image</i>
+					</span> 
+						<input type="file" name="user_img" id="user_img">
+				</span>
+			</div>
+			</div>
+			
+			
+			
 				
-				이메일<br>
-				<input type="email" name="email" id="email" placeholder="이메일을 입력하세요"> 
-				<input type="button" value="중복체크" id="chk"> 
-				<div id="msg"> </div>
+				<label for="exampleFormControlTextarea1">이메일</label><br>
+				<input type="email" class="form-control maintext" name="email" id="email" placeholder="이메일을 입력하세요"> <div id="msg" class="log"> </div>
+				<input type="button" class="btn btn-primary" value="중복체크" id="chk"> 
+				<!-- <div id="msg"> </div> -->
 				
-				비밀번호<br>
-				<input type="password" placeholder="8~20자 이내 영문,대/소문자,숫자만 가능" name="pass" id="pass" maxlength="20"><br>
-				비밀번호확인<br>
-				<input type="password" placeholder="8~20자 이내 영문,대/소문자,숫자만 가능" name="pass2" id="pass2" maxlength="20"><br>
-				<input type="text" placeholder="이름" name="name" id="name" maxlength="10"><br>
 				
-				닉네임<br>
-				<input type="text" placeholder="특수문자 사용 불가(2~10자이내)" name="nick" id="nick" maxlength="10">
-				<input type="button" value="중복확인" id="ckn"> 
-				<div id="msg2"> </div>
+				<br>
+				<br>
+				<label for="exampleFormControlTextarea1" >비밀번호</label>	
+				<input type="password" class="form-control maintext" placeholder="8~20자 이내 영문,대/소문자,숫자만 가능" name="pass" id="pass" maxlength="20"><br>
+				<br>
+				<label for="exampleFormControlTextarea1" >비밀번호 확인</label>	
+				<input type="password" class="form-control maintext" placeholder="8~20자 이내 영문,대/소문자,숫자만 가능" name="pass2" id="pass2" maxlength="20"><br>
 				
-				휴대폰번호<br>
-				<input type="text" placeholder="'-'를 제외한 숫자만 입력하세요" name="phone" id="phone" maxlength="11">
-				<input type="button" value="인증하기" id="pck" onclick="doTimer()"><br>
-				<input type="text" name="number" id="number" maxlength="6">
+				<br>
+				<label for="exampleFormControlTextarea1" >이름</label>	
+				<input type="text" class="form-control maintext" placeholder="이름을 입력하세요" name="name" id="name" maxlength="10"><br>
+				
+				<br>
+				<label for="exampleFormControlTextarea1" >닉네임</label>	
+				<input type="text" class="form-control maintext" placeholder="특수문자 사용 불가(2~10자이내)" name="nick" id="nick" maxlength="10">
+				<div id="msg2" class="log"> </div>
+				<input type="button" class="btn btn-primary" value="중복확인" id="ckn"> 
+				<br>
+				
+				<br>
+				<label for="exampleFormControlTextarea1" >전화번호</label>	
+				<input type="text" class="form-control maintext" placeholder="'-'를 제외한 숫자만 입력하세요" name="phone" id="phone" maxlength="11">
+				<input type="button" class="btn btn-primary" value="인증하기" id="pck" onclick="doTimer()"><br>
+				<input type="text" class="form-control maintext" name="number" id="number" maxlength="6" placeholder="인증번호를 입력하세요">
 				<input type="hidden" name="num_check" id="num_check">
-				<input type="button" value="인증완료" id="pckcom" onclick="doCodeCheck();"><br>	
-				<input type="text" id="timer" name="timer" value="" readonly><br>
+				<input type="button" class="btn btn-primary" value="인증완료" id="pckcom" onclick="doCodeCheck();"><br>	
+				<input type="text"  id="timer" name="timer" value="" style="background-color: white; border: none;" readonly><br>
 				
-				주소<br>		
-				<input type="text" id="zip" name="zip" placeholder="우편번호">
-				<input type="button" onclick="Postcode();" value="우편번호 찾기"><br>
-				<input type="text" id="addr" name="addr" placeholder="도로명주소"><br>
+				<br>
+				<label for="exampleFormControlTextarea1" >주소</label>		
+				<input type="text" class="form-control maintext" id="zip" name="zip" placeholder="우편번호" readonly>
+				<input type="button" class="btn btn-primary" onclick="Postcode();" value="우편번호 찾기"><br>
+				<input type="text" class="form-control maintext" id="addr" name="addr" placeholder="주소를 입력하세요"><br>
 				<span id="guide" style="color:#999;display:none"></span>
-				<input type="text" id="addr2" name="addr2"  placeholder="상세주소"><br>
-					
+				<input type="text"  class="form-control maintext" id="addr2" name="addr2"  placeholder="상세주소를 입력하세요"><br>
+				
 					
 				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 				<script>
@@ -421,12 +453,21 @@
 				        }).open();
 				    }
 				</script>
-				<input type="submit" value="회원가입" >
-				<input type="button" value="돌아가기" onclick="history.back();">
-			</form>	
-		</fieldset>
+				<div class="col-md-5 ml-auto mr-auto fileadd6">
+				<input type="submit" class="btn btn-primary" value="회원가입" >
+				<input type="button" class="btn btn-primary" value="돌아가기" onclick="history.back();">
+				</div>
+			</form>
+			
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		
 		
 		<!-- 푸터 -->
+		<jsp:include page="../inc/bottom.jsp"/>
 		<!-- 푸터 -->
 	</body>
 </html>

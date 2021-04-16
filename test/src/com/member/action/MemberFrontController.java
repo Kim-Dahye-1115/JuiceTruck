@@ -63,7 +63,16 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} else if(command.equals("/JoinTerms.me")){
+			//Action 객체
+			forward = new ActionForward();
+				
+			//("./이동 할 실제주소")
+			forward.setPath("./member/join_Terms.jsp");
+					
+			// false - forward로 이동(주소 변경x, 화면 변경 O)
+			forward.setRedirect(false);
+		 }
 		
 /*************************** 여기서부터는 진우님 코드 ************************************/
 		else if(command.equals("/MemberLogin.me")){

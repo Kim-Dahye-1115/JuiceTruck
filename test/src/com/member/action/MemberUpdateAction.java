@@ -86,16 +86,15 @@ public class MemberUpdateAction implements Action {
 		
 		if(check == 0){
 			out.print("<script>");
-//			out.print(" alert('비밀번호를 입력하세요.'); ");
+			out.print(" alert('비밀번호를 확인해주세요'); ");
 			out.print(" history.back(); ");
-			out.print("</script>");
-//			
+			out.print("</script>");		
 			out.close();
 			return null;
 			
 		}else if(check == -1){
 			out.print("<script>");
-//			out.print(" alert('회원 정보 없음'); ");
+			out.print(" alert('회원 정보 없음'); ");
 			out.print(" history.back(); ");
 			out.print("</script>");
 			
@@ -103,7 +102,7 @@ public class MemberUpdateAction implements Action {
 			return null;
 		}else{ // check == 1
 			out.print("<script>");
-//			out.print(" alert('회원 정보 수정이 완료되었습니다.'); ");
+			out.print(" alert('회원 정보 수정이 완료되었습니다.'); ");
 			out.print(" location.href='./GoodsList.ag'; ");
 			out.print("</script>");
 			

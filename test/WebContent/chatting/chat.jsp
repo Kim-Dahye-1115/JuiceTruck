@@ -115,9 +115,7 @@
 						chatTime +
 						'</span>' +
 						'</h4>' +
-						'<p>' +
-						chatContent +
-						'</p>' +
+						(chatContent.substring(0,7) == "http://" ? '<a href="'+chatContent+'">지도</a>': '<p>'+chatContent+'</p>')+
 						'<div id="div_1"></div>'+
 						'</div>' +
 						'</div>' +
@@ -139,9 +137,7 @@
 						chatTime +
 						'</span>' +
 						'</h4>' +
-						'<p>' +
-						chatContent +
-						'</p>' +
+						(chatContent.substring(0,7) == "http://" ? '<a href="'+chatContent+'">지도</a>': '<p>'+chatContent+'</p>')+
 						'<div id="div_1"></div>'+
 						'</div>' +
 						'</div>' +
@@ -149,7 +145,6 @@
 						'</div>' +
 						'<hr>');
 			}
-			$("#div_1").load("../chatting/map.jsp");
 			$('#chatList').scrollTop($('#chatList')[0].scrollHeight); //스크롤을 가장 아래쪽으로 내려 줌으로써 메세지가 올 때 마다 성공적으로 메세지를 잘 보여줄 수 있는 코드
 		}
 		//채팅을 보낸 사람, 컨텐트, 시간을 화면에 실제로 출력해 줄 수 있도록 만들어주는 코드
@@ -157,7 +152,7 @@
 		function getInfiniteChat(){ //getInfiniteChat이라는 함수. 몇초 간격으로 새로운 메세지가 왔는지 가져오는 것을 의미 해주는 코드
 			setInterval(function() { //chatListFunction이 계속해서 실행 될 수 있게 만들어 주는 코드
 				chatListFunction(lastID); 
-			}, 3000); //3초에 한번씩 실행 292번째줄과 연결
+			}, 1000); //3초에 한번씩 실행 292번째줄과 연결
 		}
 		function getUnread() {
 			$.ajax({
@@ -293,7 +288,7 @@
 						<%=messageContent %>
 					</div>
 					<div class ="modal-footer">
-						<button type ="button" class ="btn btn-primary" data-dismiss="modal">확인</button>
+						<button type ="button" class ="btn btn-primary" data-dismiss="modal" onclick="window.open('','_self').close();">확인</button>
 					</div>
 				</div>
 			</div>

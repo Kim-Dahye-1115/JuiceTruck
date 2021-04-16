@@ -1,8 +1,5 @@
 <!-- 
 (관리자) 공지사항 작성 페이지
-name값 
-	content(글내용)
-	title(제목)
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -30,12 +27,12 @@ name값
 					return false;
 				}
 				
-				//제목(33자)/내용666자 길이 체크
-				if(title.length>33){
+				//제목(100자)/내용2000자 길이 체크
+				if(title.length>100){
 					alert("제목 글자수 초과");
 					return false;
 				}
-				if(content.length>666){
+				if(content.length>2000){
 					alert("내용 글자수 초과");
 					return false;
 				}
@@ -46,14 +43,14 @@ name값
 			//내용 글자수 보기
 			$(function(){
 				$('textarea').keyup(function(){
-					var size = 666;
+					var size = 2000;
 					var v = $(this).val().length;
 					//alert("v"+v);
 					if((size-v) >= 0 ){
-						$('#contentSize').html(size-v);
+						$('#contentSize').val(size-v);
 					}
 					else{
-						$('#contentSize').html("가능한 글자수를 초과했습니다.");
+						$('#contentSize').val("가능한 글자수를 초과했습니다.");
 					}
 				});
 				
@@ -64,35 +61,33 @@ name값
 		<!-- 헤더 -->
 		<jsp:include page="../inc/top.jsp"/>
 		<!-- 헤더 -->
-		<br><br><br><br><br><br>
+<div class="main main-raised">
+	<div class="container">
+		<div class="section section-text">
+			<div class="row">
+ 				<div class="col-md-9 ml-auto mr-auto"> 
+					<h3 class="title">공지사항</h3>
+					<!-- 본문 폼 -->
+					<form action="./noticeWriteAction.no" method="post" name="fr" onsubmit="return check();">
+						<input type="text" class="form-control maintext" name="title" maxlength="100" placeholder="제목을 입력하세요">
+						<label for="exampleFormControlTextarea1">글자수 제한</label>
+						<input type="text" class="log adminTextHide" value="2000" id="contentSize" readonly>
+						<div class="form-group dt2">
+			    			<textarea class="form-control maintext" rows="20" name="content" placeholder="내용을 입력하세요"></textarea>
+						</div>
+						<!-- 서브밋 버튼 -->
+						<div class="col-md-2 ml-auto mr-auto fileadd6">
+							<input type="submit" value="등록" class="btn btn-primary">
+						</div>
+						<!-- 서브밋 버튼 -->
+					</form>
+					<!-- 본문 폼 끝 -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>		
 		
-		<h2>공지사항</h2>
-		<!-- 본문 폼 -->
-		<form action="./noticeWriteAction.no" method="post" name="fr" onsubmit="return check();">
-			<table>
-				<tr>
-				    <td>
-						<input type="text" name="title" maxlength="33" placeholder="제목을 입력하세요(15자이내)">
-			   		</td>
-				</tr>
-				<tr>
-					<td>
-						<h5 id="contentSize">666</h5>
-			   		</td>   	
-				</tr>	
-				<tr>
-				    <td>
-			    		<textarea rows="20" name="content" placeholder="내용을 입력하세요"></textarea>
-			   		</td>
-				</tr>
-			</table>
-			<!-- 테이블 -->
-			
-			<!-- 서브밋 버튼 -->
-			<input type="submit" value="등록">
-			<!-- 서브밋 버튼 -->
-		</form>
-		<!-- 본문 폼 끝 -->
 		
 		<!-- 푸터 -->
 		<jsp:include page="../inc/bottom.jsp"/>

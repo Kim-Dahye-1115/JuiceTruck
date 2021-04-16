@@ -15,10 +15,8 @@
 		<!-- 헤더 -->
 		<jsp:include page="../inc/top.jsp"/>
 		<!-- 헤더 -->
-		<br><br><br><br><br><br><br>
-		
-		<h2> 리뷰 리스트 페이지 </h2>
 			<%
+			  request.setCharacterEncoding("utf8");
 			  // s_nick 가져오기 - 수정한 부분
 			  String s_nick = request.getParameter("s_nick");
 			  // s_nick 가져오기  - 수정한 부분
@@ -33,9 +31,62 @@
 			  // DAO 객체 생성
 			  ReviewDAO rdao = new ReviewDAO();
 			  
+			  String nick = w_nick;
+			  if(s_nick != null) nick  = s_nick;
+			  
+			%>
+<div class="main main-raised">
+	<div class="container">
+		<div class="section section-text">
+			<div class="row">
+				<div class="col-md-9 ml-auto mr-auto">			
+			<!-- 판매자 리뷰 페이지 -->
+			<%if(s_nick != null){%>
+			<h2> 판매자 리뷰 </h2>
+				<div class="reviewhead">
+				   <div class="resell">
+				   <div>
+					<img class="rounded-circle img-fluid image2" src="${requestScope.userImg }">
+				   </div>	
+					<div class="sellnick"><%=nick %> 
+					<button class="btn btn-primary btn-sm staravg" onclick="location.href='./reviewWrite.re?s_nick=<%=s_nick%>'">
+					   	리뷰작성
+					</button>
+					</div>
+					  <div>
+					   <%
+					     float avgStar = (float) request.getAttribute("avgStar");
+					   %>
+					   </div>
+					   <div  class="starline">
+					   <%
+					     for(int i=1;i<=avgStar;i++){ %>
+					       <i class="material-icons starpoint">star</i>
+					   <%
+					     }
+					     for(int j=1;j<=(5-avgStar);j++){ %>
+					       <i class="material-icons starpoint">star_outline</i>
+					   <%
+					     }
+					     if(!s_nick.equals(w_nick)) {
+					   %>
+					   <div class="staravg">
+					   평균 ${avgStar }
+					   </div>
+					 </div>
+				   </div>
+				</div>
+					<!-- 판매자 리뷰 페이지  -->
+			<%
+				}
+			  } else {
+				  %>
+				  <h2> 내가 쓴 리뷰 </h2>
+				  <%
+			  }
 			%>
 		   
-		   <table border="1">
+		   <table class="table">
 		   <%
 		   		/* 리뷰리스트 불러와서 BEAN에 담기 */
 		   		//if(cnt != 0){
@@ -43,70 +94,87 @@
 		   			ReviewBean rb = (ReviewBean)reviewList.get(i);
 		   %>
 					    <tr>
+					      <td class="retable" width="80">
+					    	<div class="stardate">
+					        	<%=rb.getRe_date() %>
+					        </div>
+					      </td>
+					    </tr>  
+					    <tr>  
 					      <td>별점</td>
 					      <td>
+					      
+					      <div class="starco">
 					        <%for(int j=1;j<=rb.getRe_star();j++){ %>
-					          <i class="material-icons">star</i>
+					          <i class="material-icons starpoint">star</i>
+					        <%
+					          }
+					          for(int j=1;j<=(5-rb.getRe_star());j++){ %>
+					          <i class="material-icons starpoint">star_outline</i>
 					        <%
 					          }
 					        %>
-					        <%for(int j=1;j<=(5-rb.getRe_star());j++){ %>
-					          <i class="material-icons">star_outline</i>
-					        <%
-					          }
-					        %>
+					        
+					       	
+				           </div>
+					        
 					      </td>
 					    </tr>
+					    <%if(s_nick != null){%>
 					    <tr>
-						  <td>
-						    <!-- 회원이미지 -->
-						    <img alt="회원이미지" src="">
-						  </td>
-						  <!-- 판매자 닉네임 -->
-						  <td><%=rb.getS_nick() %></td>
-						   
-					    </tr>
-					    <tr>
-					      <td>
-					        <!-- 회원이미지 -->
-					        <img alt="회원이미지" src="">
-					      </td>
+					      <td>작성자</td>
 					      <!-- 작성자 닉네임 -->
 						  <td><%=rb.getW_nick() %></td>
 					    </tr>
+					   <%
+					     } else {
+					   %>
 					    <tr>
-					      <td>리뷰내용</td>
-						  <td><%=rb.getRe_content() %></td>
-						   
-						  <!-- 등록된 이미지 파일  -->
+						  <td>판매자</td>
+						  <!-- 판매자 닉네임 -->
+						  <td><%=rb.getS_nick() %></td>
 					    </tr>
+					   <%
+					     }
+					     String content = null;
+						 if(rb.getRe_content() != null){
+							content = rb.getRe_content().replace("\r\n", "<br>");
+						 }
+					   %>
+					    
 						<%if(rb.getFile() != null){ %>
 					    <tr>
 						  <!-- 이미지 파일 -->
-						  <td>첨부 파일</td>
-						  <td>
-						    <img src="./upload/<%=rb.getFile()%>">
+						  <td colspan="2">
+						    <img class="image1" src="./upload/<%=rb.getFile()%>">
 						  </td>
 					    </tr>
+					    
 						<%
 						  }
 						%>
-					    <tr>
-					      <td colspan="2">
-					        <!-- 리뷰 등록날짜 -->
-					        <%=rb.getRe_date() %>
-					      </td>
+						<tr>
+						  <td colspan="2"><%=content %></td>
+						   
+						  <!-- 등록된 이미지 파일  -->
 					    </tr>
 						<%if(w_nick.equals(rb.getW_nick())){%>
 						<tr>
-						  <td colspan="2">
-						    <a href="./reviewUpdate.re?num=<%=rb.getRe_num() %>">리뷰 수정</a>
-							<a href="./reviewDelete.re?num=<%=rb.getRe_num() %>">리뷰 삭제</a>
-						  </td>
+							<td class="retable" colspan="2">
+								
+								<button class="btn btn-primary btn-lg" onclick="location.href='./reviewUpdate.re?num=<%=rb.getRe_num() %>'">
+									<i class="material-icons">create</i>리뷰 수정
+								</button>
+								<button class="btn btn-primary btn-lg" onclick="location.href='./reviewDelete.re?num=<%=rb.getRe_num() %>'">
+									<i class="material-icons">clear</i>리뷰 삭제
+								</button>
+								
+							</td>
 						</tr>
 					    <%
 					      }
 						%>
+						
 		    <%	} %>
 			   </table>
 			   
@@ -165,7 +233,11 @@
 				
 			</div>
 			<!-- 페이징 처리 - 수정한 부분 -->
-		
+				</div>
+			</div>
+		</div>
+	</div>
+</div>		
 		<!-- 푸터 -->
 		<jsp:include page="../inc/bottom.jsp"/>
 		<!-- 푸터 -->

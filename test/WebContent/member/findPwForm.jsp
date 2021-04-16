@@ -4,23 +4,69 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>주위에서 스피디하게!주스트럭</title>
+	<script type="text/javascript">
+		function check() {
+			var rePhone = /^[0-9]{11,11}$/;
+			var phone = document.getElementById("phone");
+			
+			//전화번호 유효성 체크
+			if(phone.value=="") {
+		           alert("전화번호를 입력해 주세요");
+		           phone.focus();
+		           return false;
+		    }
+			if(!check(rePhone, phone, "전화번호는 11자리 숫자로 입력하세요.")) {
+		           return false;
+		    }
+		}
+	</script>
 </head>
-<body>
+<body class="findpw-page ">
+	<!-- 헤더 -->
+	<jsp:include page="../inc/top.jsp"/>
+	<!-- 헤더 -->
 	<%
 		String pass = (String) request.getAttribute("findpass");
 		request.setCharacterEncoding("UTF-8");
 	%>
 	
-	<form action="./MemberFindPwEmailAction.me" method="post">
-		 이메일 : <input type="text" name="email" placeholder="이메일을 입력해주세요" required>
+	<div class="member-join">
+		<div class="container">
+		<div class="section section-text">
+			<div class="row">
+				<div class="col-md-9 ml-auto mr-auto">
+				<h3 class="title">비밀번호 찾기</h3>
+				
+		<form action="./MemberFindPwEmailAction.me" method="post" onsubmit="return check();">
+		
+		 <label for="exampleFormControlTextarea1">이메일</label><br>
+		 <input type="text" name="email" class="form-control maintext" placeholder="이메일을 입력해주세요" required>
 	     <br>
-		 전화번호: <input type="text" name="phone" placeholder="핸드폰 번호를 입력해주세요." required>
+	     
+	     <label for="exampleFormControlTextarea1">전화번호</label><br>
+		 <input type="text" name="phone" class="form-control maintext" placeholder="핸드폰 번호를 입력해주세요." maxlength="11" required>
 	     <br>
+	     
 	     <% if (pass != null){ %>
-	     <input type="text" name="Findpw" value="<%=pass%>"><br> 
+	     	<input type="text" name="Findpw" value="<%=pass%>" readonly><br> 
 	     <% } %>
-	     <input type="submit" value="Find PW">
-	     <input type="button" value="로그인" onclick="location.href='./MemberLogin.me'">
+	     
+	     <div class="col-md-5 ml-auto mr-auto fileadd6">
+	     <input type="submit" class="btn btn-primary" value="Find PW">
+	     <input type="button" class="btn btn-primary" value="로그인" onclick="location.href='./MemberLogin.me'">
+     	 </div>
      </form>
+     
+     </div>
+		</div>
+	 		</div>
+	 			</div>
+					</div>
+		
 </body>
+
+	<!-- 푸터 -->
+	<jsp:include page="../inc/bottom.jsp"/>
+	<!-- 푸터 -->
 </html>

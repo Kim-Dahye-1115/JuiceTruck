@@ -65,6 +65,7 @@ public class MemberLoginAction implements Action {
 			HttpSession session = request.getSession();
 			session.setAttribute("email", mb.getEmail());
 			session.setAttribute("nick", mb.getNick());
+			session.setAttribute("user_img", mb.getUser_img());
 			
 			//2.
 			out.print("<script>");

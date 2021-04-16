@@ -6,9 +6,9 @@
       auth="Container"
       type="javax.sql.DataSource"
       driverClassName="com.mysql.jdbc.Driver"
-      url="jdbc:mysql://localhost:3306/juice"
-      username="root"
-      password="1234"
+      url="jdbc:mysql://localhost:3306/itwillbs10"
+      username="itwillbs10"
+      password="itwillbs8030909"
       
       loginTimeout = "10"
       maxWait="5000"

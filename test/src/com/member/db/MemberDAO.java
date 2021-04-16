@@ -403,6 +403,7 @@ public class MemberDAO {
 	}	
 	// pnum_check(phone)
 	
+/****************************** 채팅에 사용되는 메소드 **********************************/	
 public String getProfile(String nick) {
 		
 		try {
@@ -414,9 +415,9 @@ public String getProfile(String nick) {
 			if (rs.next()) {
 				//사용자 
 				if (rs.getString("user_img").equals("")) {
-					return "http://localhost:8088/test/images/icon.png";
+					return "http://localhost:8088/Juice/person.png";
 				} else {
-					return "http://localhost:8088/test/upload/" + rs.getString("user_img");
+					return "http://localhost:8088/Juice/upload/" + rs.getString("user_img");
 				}
 			}
 		} catch (Exception e) {
@@ -424,8 +425,30 @@ public String getProfile(String nick) {
 		} finally {
 			closeDB();
 		}
-		return "http://localhost:8088/test/images/icon.png";
+		return "http://localhost:8088/Juice/person.png";
 	}
+
+public int registerCheck(String nick) {
+	
+	try {
+		con = getCon();
+		sql = "select * from users where nick = ?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, nick);
+		rs = pstmt.executeQuery();
+		if (rs.next() || nick.equals("")) {
+			return 0;
+		} else {
+			return 1;
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		closeDB();
+	}
+	return -1;
+}
+/****************************** 채팅에 사용되는 메소드 **********************************/
 
 //findEmail
 		public String findemail(String name, String phone) {

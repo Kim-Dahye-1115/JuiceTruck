@@ -19,55 +19,11 @@
 		if(userID != null) {
 			session.setAttribute("messageType", "오류 메세지");
 			session.setAttribute("messageContent", "현재 로그인이 되어 있는 상태 입니다.");
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("./index");
 			return;
 		}
 		
 	%>
-	
-	
-	<!-- 네비게이션 -->
-	<jsp:include page="../inc/nav.jsp" />
-	<!-- 네비게이션 -->
-	
-	<div class="container">
-		<form method="post" action="../userLogin">
-			<table class ="table talbe-boarded table-hover" style = "text-align : center; border : 1px solid #dddddd">
-				<br>
-				<br>
-				
-				<center>
-				<img src="images/d1.png">
-				</center>
-				
-				<br>
-				<br>
-			
-				<thead>
-				
-					<tr>
-						<th colspan ="2"><h4>Juice Talk</h4></th>
-					</tr>
-				</thead>
-				
-				
-				
-				<tbody>
-					<tr>
-						<td style = "width : 110px;"><h5>아이디</h5></td>
-						<td><input class ="form-control" type="text" placeholder="아이디를 입력하세요" name="userID" maxlength="20"></td>
-					</tr>
-					<tr>
-						<td style = "width : 110px;"><h5>비밀번호</h5></td>
-						<td><input type="password" class="form-control" placeholder="비밀번호를 입력하세요." name="userPassword" maxlength="20"></td>
-					</tr>
-					<tr>
-						<td colspan = "2" style ="text-align:left;"><input type="submit" class="btn btn-primary pull-right" value ="로그인"></td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
-	</div>
 	<%
 	String messageContent = null;
 	if(session.getAttribute("messageContent") != null) {
@@ -129,7 +85,7 @@
 					<div id ="checkMessage" class ="modal-body">
 					</div>
 					<div class ="modal-footer">
-						<button type ="button" class ="btn btn-primary" data-dismiss="modal">확인</button>
+						<button type ="button" class ="btn btn-primary" data-dismiss="modal" onclick="window.open('','_self').close();">확인</button>
 					</div>
 				</div>
 			</div>

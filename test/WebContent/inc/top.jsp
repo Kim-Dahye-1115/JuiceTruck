@@ -1,5 +1,6 @@
 <!-- 헤더입니다. -->
 <!DOCTYPE html>
+<%@page import="com.member.db.MemberDAO"%>
 <html lang="en">
 
 <head>
@@ -31,17 +32,32 @@
     String email = (String) session.getAttribute("email");
     String nick = (String) session.getAttribute("nick");
     
+    MemberDAO mdao = new MemberDAO();
+    String user_img = mdao.getProfile(nick);
+    
 	%>
 
- <nav class="navbar fixed-top  navbar-expand-lg no-shadow" id="sectionsNav">
+ <nav class="navbar fixed-top  navbar-expand-lg topmar no-shadow" id="sectionsNav">
 	<div class="container">
-        
+       <!-- 접속자 표시 자리 -->
 		<div class="collapse navbar-collapse">
-        <!-- 로고 자리 -->
-            <div class="navbar-translate">
-                <a class="navbar-brand" href="./GoodsList.ag">JUICE TRUCK </a>
+        <%
+    	  if(email == null){%>
+    	<div class="navbar-translate">
+                <a class="navbar-brand" href="./MemberLogin.me">
+                	<img src="./person.png" class="rounded-circle img-fluid image4">
+					 게스트 님 어서오세요!
+                </a>
             </div>
-        <!-- 로고 자리 -->
+    	<%}else{%>
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="./Update.me">
+                	<img src="<%=user_img %> " class="rounded-circle img-fluid image4">
+					 <%=nick %> 님 환영합니다!
+                </a>
+            </div>
+        <%} %>    
+        <!-- 접속자 표시 자리 -->
             
 			<%
     		  if(email == null){
@@ -49,7 +65,7 @@
     			<ul class="navbar-nav ml-auto" style="visibility: hidden;"></ul>
     		<!-- 로그인 안된 상태 -->
 				  <a class="log" href="./MemberLogin.me">로그인</a>|
-				  <a class="log" href="./Join.me">회원가입</a>
+				  <a class="log" href="./JoinTerms.me">회원가입</a>
 			<!-- 로그인 안된 상태 -->
 
     		<%
@@ -65,13 +81,16 @@
 							<a href="./Update.me" class="dropdown-item">
 								<i class="material-icons">account_circle</i>내정보</a>
 								
+							<a href="./MyGoods.mg" class="dropdown-item">
+								<i class="material-icons">storefront</i>내트럭</a>
+								
 							<a href="./GoodsAdd.ag" class="dropdown-item">
 								<i class="material-icons">attach_money</i>판매하기</a>
 								
 							<a href="./reviewList.re" class="dropdown-item">
 								<i class="material-icons">star</i>내리뷰</a>
 								
-							<a href="#" class="dropdown-item">
+							<a href="./heartList.he" class="dropdown-item">
 								<i class="material-icons">favorite_border</i>찜한상품</a>
 								
 							<a href="./qnaList.qa" class="dropdown-item">
@@ -85,23 +104,37 @@
 			<!-- 내 정보 토글 -->
 			
 			<!-- 로그인 된 상태 -->
-				<a class="log" href="./MemberLogout.me">로그아웃</a>|
-				<a class="log" href="./box" onclick="window.open(this.href,'_blank', 'width=375px, height=667px,toolbars=no,scrollbars=no');return false;">채팅 목록</a>
+				<a class="log" href="./MemberLogout.me">로그아웃</a>
 			<!-- 로그인 된 상태 -->
 			<%
     		  }
     		%>  
 		</div>
-            
+		<!-- 사이트 로고 -->
+        <div class="jtl">
+          <div class="col-md-1">
+           <a href="./GoodsList.ag">
+        	<img src="./jtLogo.png">
+           </a>
+          </div>
+		<!-- 사이트 로고 -->
 		<!-- 검색창 -->
-		<div class="col-md-4 ml-auto mr-auto">
-			<form class="text-center" action="./search.se" method="get">
-				<input type="text" class="form-control" name="search" placeholder="상품명,카테고리,상점명을 입력하세요">
-				<button type="submit" class="btn btn-primary btn-link search">
-					<i class="material-icons searchicon">search</i></button>
-			</form>
-		</div>
+			<div class="col-md-5 ml-auto mr-auto">
+				<form class="text-center" action="./search.se" method="get">
+					<input type="text" class="form-control" name="search" placeholder="상품명,카테고리,상점명을 입력하세요">
+					<button type="submit" class="btn btn-primary btn-link search">
+						<i class="material-icons searchicon">search</i></button>
+				</form>
+			</div>
 		<!-- 검색창 -->
+		 <!-- 채팅로고 -->
+		 <div class="col-md-2">
+		 	<a href="./box" onclick="window.open(this.href,'_blank', 'width=375px, height=667px,toolbars=no,scrollbars=no');return false;">
+		 	  <img src="./jst.png">
+		 	</a>
+         </div>
+		 <!-- 채팅로고 -->
+        </div>    
 			
 		<!-- 메뉴 토글 -->
 		<div class="btn-group col-md-2 mr-auto">
@@ -119,7 +152,7 @@
 				<a class="dropdown-item" href="./GoodsList.ag?item=생활/취미">생활/취미</a> 
 				<a class="dropdown-item" href="./GoodsList.ag?item=동물 용품">동물 용품</a> 
 				<a class="dropdown-item" href="./GoodsList.ag?item=뷰티/미용">뷰티/미용</a> 
-				<a class="dropdown-item" href="./GoodsList.ag?item=아동용품">아동용품</a> 
+				<a class="dropdown-item" href="./GoodsList.ag?item=아동 용품">아동용품</a> 
 				<a class="dropdown-item" href="./GoodsList.ag?item=나눔">나눔</a>
 			</div>
 		</div>

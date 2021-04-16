@@ -1,12 +1,5 @@
 <!-- 
 문의글 작성 페이지
-문의하기 링크와 연결됨
-업로드 이미지 미리보기
-name값 
-	file(파일)
-	content(글내용)
-	category(카테고리)
-	subject(제목)
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -54,12 +47,12 @@ name값
 					return false;
 				}
 				
-				//제목(33자)/내용329자 길이 체크
-				if(subject.length>33){
+				//제목(100자)/내용2000자 길이 체크
+				if(subject.length>100){
 					alert("제목 글자수 초과");
 					return false;
 				}
-				if(content.length>329){
+				if(content.length>2000){
 					alert("내용 글자수 초과");
 					return false;
 				}
@@ -70,14 +63,14 @@ name값
 			//내용 글자수 보기
 			$(function(){
 				$('textarea').keyup(function(){
-					var size = 329;
+					var size = 2000;
 					var v = $(this).val().length;
 					//alert("v"+v);
 					if((size-v) >= 0 ){
-						$('#contentSize').html(size-v);
+						$('#contentSize').val(size-v);
 					}
 					else{
-						$('#contentSize').html("가능한 글자수를 초과했습니다.");
+						$('#contentSize').val("가능한 글자수를 초과했습니다.");
 					}
 				});
 				
@@ -96,67 +89,66 @@ name값
 		
 		        reader.onload = function (e) {
 		                $('#imgPre').attr('src', e.target.result);
-		            }
+		        		}
 		
 		          reader.readAsDataURL(input.files[0]);
 		        }
 		    }
-		  
+		    
+		    //미리보기 삭제
+		    function cancel() {
+		    	 $('#imgPre').attr('src', '#');
+			}
 		</script>
 		<!-- 헤더 -->
 		<jsp:include page="../inc/top.jsp"/>
 		<!-- 헤더 -->
-		<br><br><br><br><br><br>
-		
-		<h2>고객센터</h2>
-		<!-- 페이지 이동 -->
-		<a href="./qnaWrite.qa">문의하기</a> 
-		<a href="./qnaList.qa">문의내역</a> 
-		<!-- 페이지 이동 -->
-		
-		<!-- 본문 폼 -->
-		<form action="./qnaWriteAction.qa" method="post" enctype="multipart/form-data" name="fr" onsubmit="return check();">
-			<table>
-			<!-- 상품 카테고리 선택  -->
-				<tr>
-			   		<td>
-					   <select name="category" onchange="changes(document.fr.category.value)">
-					   <option value="계정문의">계정문의</option>
-					   <option value="이용문의">이용문의</option>
-					   <option value="기타">기타</option>
-					  </select>
-			    	</td>
-				</tr>
-			<!-- 상품 카테고리 선택  -->
-				<tr>
-				    <td>
-						<input type="text" name="subject" maxlength="33" placeholder="제목을 입력하세요(15자이내)">
-			   		</td>
-				</tr>
-				<tr>
-					<td>
-						<h5 id="contentSize">329</h5>
-			   		</td>   	
-				</tr>	
-				<tr>
-				    <td>
-			    		<textarea rows="20" name="content" placeholder="내용을 입력하세요"></textarea>
-			   		</td>
-				</tr>
-			</table>
-			<!-- 테이블 -->
-			
-			<!--input file(안보이게 css적용) -->
-			<!-- 파일업로드,서브밋 버튼 -->
-			<input type="file" accept="image/jpg, image/jpeg, image/png, image/gif" id="inputFile" name="file">
-			<input type="button" value="사진첨부" onclick="document.fr.file.click();"> 
-			<input type="submit" value="문의하기">
-			<!-- 파일업로드,서브밋 버튼 -->
-		</form>
-		<!-- 본문 폼 끝 -->
-		
-		<!-- 업로드 이미지 미리보기 -->
-		<img id="imgPre" src="#" alt="" onclick="document.fr.file.click();">
+<div class="main main-raised">
+	<div class="container">
+		<div class="section section-text">
+			<div class="row">
+ 				<div class="col-md-9 ml-auto mr-auto"> 
+					<h3 class="title">고객센터</h3>
+					<!-- 본문 폼 -->
+					<form action="./qnaWriteAction.qa" method="post" enctype="multipart/form-data" name="fr" onsubmit="return check();">
+						<!-- 상품 카테고리 선택  -->
+					<div class="form-group">
+						<select name="category" class="form-control selectpicker"
+							data-style="btn btn-link">
+						<option value="계정문의">계정문의</option>
+						<option value="이용문의">이용문의</option>
+						<option value="기타">기타</option>
+						</select>
+					</div>
+						<!-- 상품 카테고리 선택  -->
+						<input type="text" class="form-control maintext" name="subject" maxlength="100" placeholder="제목을 입력하세요">
+						<label for="exampleFormControlTextarea1">글자수 제한</label>
+						<input type="text" value="2000" id="contentSize" class="log adminTextHide" readonly>
+					    <div class="form-group dt2">
+				    		<textarea rows="20" name="content" placeholder="내용을 입력하세요" class="form-control maintext"></textarea>
+				    	</div>
+						
+						<!--input file(안보이게 css적용) -->
+						<!-- 파일업로드,서브밋 버튼 -->
+						<input type="file" accept="image/jpg, image/jpeg, image/png, image/gif" id="inputFile" name="file"
+							class="adminHide" onclick="fileCancel();">
+						<div class="col-md-7 ml-auto mr-auto fileadd6">
+							<input type="reset" value="취소하기" class="btn btn-primary" onclick="cancel();">
+							<input type="button" value="사진첨부" onclick="document.fr.file.click();" class="btn btn-primary"> 
+							<input type="submit" value="문의하기" class="btn btn-primary">
+						</div>
+						<!-- 파일업로드,서브밋 버튼 -->
+					</form>
+					<!-- 본문 폼 끝 -->
+					
+					<!-- 업로드 이미지 미리보기 -->
+					<img id="imgPre" src="#" alt="" onclick="document.fr.file.click();" width="577px">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 		
 		<!-- 푸터 -->
 		<jsp:include page="../inc/bottom.jsp"/>

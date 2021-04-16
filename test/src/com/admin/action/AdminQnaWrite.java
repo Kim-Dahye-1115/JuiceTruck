@@ -21,7 +21,7 @@ public class AdminQnaWrite implements Action {
 		
 		ActionForward forward = new ActionForward();
 		//로그인제어
-		if(!email.equals("admin@itwill.com")){
+		if(!email.equals("juicetruck.ad@gmail.com")){
 			forward.setPath("./qnaList.qa");
 			forward.setRedirect(true);
 			return forward;

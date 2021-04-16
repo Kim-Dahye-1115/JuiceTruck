@@ -10,7 +10,45 @@
  * License Creative Tim (https://www.creative-tim.com/license)
  *
  * ========================================================= */
- 
+/* 주은님 추가 코드 */
+.adminList {
+	border-collapse: collapse; 
+	width: 100%;
+}
+.adminW {
+	width: 300px;
+}
+.adminW2 {
+	width: 350px;
+}
+.adminW3 {
+	width: 80px;
+}
+.adminW4 {
+	width: 100px;
+}
+.adminH {
+	height: 50px;
+}
+.adminListDate {
+	width: 100px;
+}
+.adminCenter {
+	text-align: center;
+}
+.adminRight {
+	text-align: right;
+}
+.adminHide {
+	display: none !important;
+}
+.adminTextHide {
+	background-color: white; 
+	border: none; 
+	width: 15em;
+}
+/* 주은님 추가 코드 */
+
  /* 김다혜님 추가 코드 */
 #topBtn {
 	position:fixed;
@@ -19,16 +57,195 @@
 	z-index:9999;
 }
  /* 김다혜님 추가 코드 */
+
+.membertwo {
+	display: flex;
+}
+
+.memberup {
+	display: block;
+	text-align: center;
+}
+
+.memberbtn {
+	margin-bottom: 10px;	
+}
+ 
+.rews{
+	padding-top: 20px;
+} 
+.staravg {
+	margin-left: 20px !important;
+} 
+ 
+.starline {
+	vertical-align: middle;
+	display: flex;
+} 
+ 
+.resell {
+	display: block;
+}
+ 
+.reviewhead {
+	padding-top: 30px;
+	display: flex;
+} 
+ 
+.retable {
+	border-color: white !important;
+} 
+
+.topmar {
+	padding-top: 0px !important;
+} 
+ 
+.jtl {
+   display: flex;
+    padding-top: 20px;
+    vertical-align: bottom;
+} 
+ 
+.starpoint {
+	color: #94f436;
+} 
+ 
+.retop {
+	border-top: none !important;
+} 
+
+.stardate {
+	float: left;
+	padding-top: 40px;
+} 
+ 
+.starco {
+	display: block;
+	vertical-align: middle;
+} 
+
+.cpcp {
+    margin-bottom: -2px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    height: 19px;
+	font-size: xx-small;    
+	color: white;
+	border: 0px;
+} 
+ 
+ 
+.image4 {
+    width: 40px !important; 
+    height: 40px !important;
+    object-fit: cover;
+} 
+
+.sellnick {
+	font-weight: 700;
+	font-size: 22px;
+    line-height: 1.5em;
+    vertical-align: middle;
+}
+
+.sell {
+	display: flex;
+	position: relative;
+	vertical-align: baseline;
+} 
+ 
+.modiin {
+	display: inline-block;
+	text-align: center;
+} 
+
+.modith {
+	display: flex;
+}
+
+.topbtn {
+	font-size: 40px;
+}
+
+.goodsbox {
+	vertical-align: middle;
+}
+
+.matitle {
+margin-top: 0px !important;
+font-size: 1.5rem;
+font-weight: bolder;
+padding-left: 115px;
+padding-top: 20px;
+padding-bottom: 10px;
+
+
+}
+
+.maimg {
+padding-top: 0px !important;
+padding-bottom: 0px !important;
+margin-left: 110px !important;
+margin-right: 110px !important;
+
+}
+
+.tab-content {position: relative;}
+
+.sold { position:  absolute;
+width:100%;
+ text-align: center;
+ top:45%;
+ z-index: 999;
+}
+
+.img-cover{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(255 255 255 / 70%);   
+  border-radius: 6px;                                                              
+  }
+
+.card-title {
+	  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 200px;
+  height: 20px;
+}
+
+.review-page {
+    padding: 40px !important;
+} 
+ 
+.cate {
+	display: flex;
+	margin-top: 30px;
+	margin-bottom: -15px;
+	border: 1px;
+	border-color: #c0c0c0;
+	font-weight: bold;
+} 
+
+.image5 {
+    width: 150px !important; 
+    height: 150px !important;
+    object-fit: cover !important;
+    margin-bottom: 10px;
+}
  
 .image3 >img{
     width: 100px !important; 
     height: 100px !important;
     object-fit: cover;
+    margin-bottom: 10px;
 }
 
 .image2 {
-    width: 50px !important; 
-    height: 50px !important;
+    width: 70px !important; 
+    height: 70px !important;
     object-fit: cover;
 }
 
@@ -54,22 +271,22 @@
 } 
 
 .share {
-	margin-left: 180px;
+	margin-left: 200px;
 }
 
 
 .dbtn {
 	display: flex;
-	margin-top: 85px;
 }
 
 .dtd {
 	padding-left: 20px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	
 }
 
 .dtl {
-	
-	padding-top: 20px;
 	display: flex;
 }
 
@@ -95,7 +312,9 @@
  
 .line1 {
 	margin-left: 110px !important;	
+    padding-top: 10px;
 }
+
 
 .mp {
 	margin-right: 5px;
@@ -116,7 +335,6 @@
 }
  
 .lab {
-	margin-bottom: 50px !important;
 	display: flex;
 }
  
@@ -171,6 +389,9 @@
 	margin-left: 120px;
 	font-weight : 500 !important;
 	margin-top: 40px;
+	font-size: 1.5rem;
+    margin-bottom: 0px;
+	
 }
 
 .line {
@@ -885,7 +1106,8 @@ mark,
 
 .img-fluid {
   max-width: 100%;
-  height: auto; }
+  height: auto;
+  margin-right: 1em; }
 
 .img-thumbnail {
   padding: 0.25rem;
@@ -1002,7 +1224,7 @@ pre {
   width: 100%;
   min-height: 1px;
   padding-right: 15px;
-  padding-left: 15px; }
+}
 
 .col {
   -ms-flex-preferred-size: 0;
@@ -2051,7 +2273,7 @@ pre {
 
 .form-control {
   display: block;
-  width: 300px;
+  width: 500px;
   padding: 0.4375rem 0;
   font-size: 1rem;
   line-height: 1.5;
@@ -5115,7 +5337,7 @@ button.close {
 
 .carousel-inner {
   position: relative;
-  width: 100%;
+  width: 87%;
   overflow: hidden; }
 
 .carousel-item {
@@ -5188,7 +5410,7 @@ button.close {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 15%;
+  width: 8%;
   color: #ffffff;
   text-align: center;
   opacity: 0.5; }
@@ -8634,7 +8856,7 @@ button:focus {
       background-color: transparent; }
   .btn.btn-lg, .btn-group-lg > .btn,
   .btn-group-lg .btn {
-    padding: 1.125rem 2.25rem;
+    padding: 18px 100px;
     font-size: 0.875rem;
     line-height: 1.33333;
     border-radius: 0.2rem; }
@@ -9515,8 +9737,9 @@ label {
     margin-left: 0;
     margin-right: 0; }
   .card-plain .card-body {
-    padding-left: 5px;
-    padding-right: 5px; }
+    padding-top: 0px;
+/*  padding-left: 5px;
+    padding-right: 5px; */ }
   .card-plain .card-header-image {
     margin: 0 !important;
     border-radius: 6px; }
@@ -11838,11 +12061,12 @@ h1, .h1 {
   line-height: 1.15em; }
 
 h2, .h2 {
-  font-size: 2.25rem;
-  line-height: 1.5em; }
+  font-size: 1.6rem;
+  line-height: 1.5em;
+  font-weight: bold; }
 
 h3, .h3 {
-  font-size: 1.5625rem;
+  font-size: 1.87rem;
   line-height: 1.4em; }
 
 h4, .h4 {
@@ -13739,7 +13963,7 @@ h2.title {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 12px 8px;
+  padding: 12px 0px;
   vertical-align: middle;
   border-color: #ddd;
   font-size: 0.875rem; }
@@ -14066,8 +14290,8 @@ thead.thead-inverse th,
     margin-left: 0;
     margin-right: 0; }
   .card-plain .card-body {
-    padding-left: 5px;
-    padding-right: 5px; }
+    padding-left: 0px;
+    padding-right: 0px; }
   .card-plain .card-header-image {
     margin: 0 !important;
     border-radius: 6px; }
@@ -14568,7 +14792,8 @@ thead.thead-inverse th,
   display: block; }
 
 .section {
-  padding: 200px 0; }
+  padding: 200px 0; 
+  padding-bottom: 70px;}
 
 .section-navbars {
   padding-bottom: 0; }
@@ -15917,7 +16142,9 @@ select.selectpicker {
     background-position: top center; }
   .product-page .main-raised {
     margin: -40vh 0px 0px;
-    padding: 40px; }
+    padding: 40px;
+    padding-bottom: 0px;
+     }
   .product-page .title-row {
     margin-top: -8vh; }
   .product-page .tab-content {
@@ -15931,22 +16158,22 @@ select.selectpicker {
       max-width: 535px;
       max-height: 535px; }
   .product-page .main-price {
-    margin: 10px 0 25px; }
+    margin: 10px 0 27px; }
   .product-page .pick-size {
     margin-top: 50px; }
     .product-page .pick-size .form-group {
       margin-top: 5px; }
   .product-page h2.title {
     margin-bottom: 0px;
-    margin-top: 25px; }
+    margin-top: 36px; }
   .product-page .flexi-nav {
     margin: 20px 0 30px;
     text-align: center; }
     .product-page .flexi-nav > li a {
-      width: 80%;
+      width: 100%;
       max-width: 85px;
       margin: 0 auto;
-      padding: 8px;
+      padding: 7px;
       display: block;
       border: 1px solid transparent;
       background: transparent;

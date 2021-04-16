@@ -6,7 +6,6 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>주위에서 스피디하게!주스트럭</title>
 	<script src="http://code.jquery.com/jquery-3.5.1.js"></script>
 	<script type="text/javascript">
 	
@@ -252,8 +251,6 @@
 		           addr2.focus();
 		           return false;
 		       }
-	
-		       alert("회원 정보 수정이 완료되었습니다.");
 	    }
 		
 		   function check(re, what, message) {
@@ -267,9 +264,9 @@
 		   }
 	</script>
 </head>
-<body>
+<body class="update-page ">
 <!-- 헤더 -->
-
+<jsp:include page="../inc/top.jsp"/>
 <!-- 헤더 -->
 
 	<%
@@ -283,35 +280,91 @@
 	 MemberBean mb = (MemberBean) request.getAttribute("mb");
  
    %>
-	
+		<div class="member-join">
+		<div class="container">
+		<div class="section section-text">
+			<div class="row">
+				<div class="col-md-9 ml-auto mr-auto">
+				<div class="col-md-5 ml-auto mr-auto">
+				<h3 class="title memberup">회원 정보 조회</h3>
+				</div>
+				
 		
 	<fieldset>
 	<form method="post" action="./MemberUpdateAction.me" enctype="multipart/form-data" id="fr" onsubmit="return validate();">
-		<h3> 회원 정보 조회 </h3>
-			<img id="imgPre" src="./upload/<%=mb.getUser_img() %>" alt="" width="200" height="200"><br>
-			<input type="file" name="user_img" id="user_img" value="<%=mb.getUser_img() %>"><br>
+		
+			<div class="memberup">
+			<div>
+				<img id="imgPre" src="./upload/<%=mb.getUser_img() %>" width="150" height="150" alt="Circle Image" class="img-raised rounded-circle memberbtn image5">
+			</div>
+			<div>
+				<span class="btn btn-primary btn-fab btn-fab-mini btn-file btn-round">
+					<span class="fileinput-exists"> 
+						<i class="material-icons">image</i>
+					</span> 
+						<input type="file" name="user_img" id="user_img" value="<%=mb.getUser_img() %>">
+				</span>
+			</div>
+			</div>
 			
-			<input type="email" placeholder="이메일" name="email" value="<%=mb.getEmail() %>" readonly><br>
-			<input type="password" placeholder="비밀번호" name="pass" id="pass" maxlength="20"><br>
-			<input type="text" placeholder="이름" name="name" id="name" value="<%=mb.getName() %>" readonly><br>
+			<div class="rews">
+			<label for="exampleFormControlTextarea1" >이메일</label>
+			<input type="email" class="form-control maintext" name="email" value="<%=mb.getEmail() %>" readonly>
+			</div>
 			
-			<input type="text" placeholder="닉네임" name="nick" id="nick" maxlength="10" value="<%=mb.getNick() %>" onkeydown="modNick()">
-			<input type="button" value="중복확인" id="ckn"> <br>
-			<div id="msg2"> </div>
+			<div class="rews">
+			<label for="exampleFormControlTextarea1" >비밀번호</label>
+			<input type="password" class="form-control maintext" placeholder="비밀번호를 입력하세요" name="pass" id="pass" maxlength="20">
+			</div>
 			
-			휴대폰번호<br>
-			<input type="text" placeholder="'-'를 제외한 숫자만 입력하세요" name="phone" id="phone" maxlength="11" value="<%=mb.getPhone() %>" onkeydown="modPhone()">
-			<input type="button" value="인증하기" id="pck" onclick="doTimer()"><br>
-			<input type="text" name="number" id="number" maxlength="6">
+			<div class="rews">
+			<label for="exampleFormControlTextarea1" >이름</label>
+			<input type="text" class="form-control maintext"  name="name" id="name" value="<%=mb.getName() %>" readonly>
+			</div>
+			
+			<div>
+			<label for="exampleFormControlTextarea1" >닉네임</label>
+			
+			<div>
+			<input type="text" class="form-control maintext" placeholder="닉네임을 입력하세요" name="nick" id="nick" maxlength="10" value="<%=mb.getNick() %>" onkeydown="modNick()">
+			<div id="msg2" class="log"> </div>
+			</div>
+			
+			<input type="button" class="btn btn-primary" value="중복확인" id="ckn">
+			</div>
+			
+			<div class="rews">			
+			<label for="exampleFormControlTextarea1" >전화번호</label>
+
+			<div class="rews">
+			<input type="text" class="form-control maintext" placeholder="'-'를 제외한 숫자만 입력하세요" name="phone" id="phone" maxlength="11" value="<%=mb.getPhone() %>" onkeydown="modPhone()">
+			</div>
+			</div>
+			
+			<div>
+			<input type="button" class="btn btn-primary" value="인증하기" id="pck" onclick="doTimer()">
+			</div>
+			
+			<div class="rews">
+			<input type="text" class="form-control maintext" name="number" id="number" maxlength="6"  placeholder="인증번호를 입력하세요">
+			</div>
+			
 			<input type="hidden" name="num_check" id="num_check">
-			<input type="button" value="인증완료" id="pckcom" onclick="doCodeCheck();"><br>	
-			<input type="text" id="timer" name="timer" value="" readonly><br>
+			<div>
+			<input type="button" class="btn btn-primary" value="인증완료" id="pckcom" onclick="doCodeCheck();">	
+			</div>
 			
-			<input type="text" id="zip" name="zip" placeholder="우편번호" value="<%=mb.getZip() %>">
-			<input type="button" onclick="Postcode()" value="우편번호 찾기"><br>
-			<input type="text" id="addr" name="addr" placeholder="도로명주소" value="<%=mb.getAddr() %>"><br>
+			<div class="rews">
+			<input type="text" id="timer" name="timer" style="background-color: white; border: none;" value="" readonly>
+			</div>
+
+			<label for="exampleFormControlTextarea1" class="rews">주소</label>
+			<input type="text" class="form-control maintext" id="zip" name="zip" readonly placeholder="우편번호" value="<%=mb.getZip() %>">
+			<input type="button" class="btn btn-primary" onclick="Postcode()" value="우편번호 찾기">
+			<input type="text" class="form-control maintext" id="addr" name="addr" placeholder="주소를 입력하세요" value="<%=mb.getAddr() %>">
+			
 			<span id="guide" style="color:#999;display:none"></span>
-			<input type="text" id="addr2" name="addr2"  placeholder="상세주소" value="<%=mb.getAddr2() %>"><br>
+			<input type="text" class="form-control maintext" id="addr2" name="addr2"  placeholder="상세주소를 입력하세요" value="<%=mb.getAddr2() %>"><br><br>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 	 function Postcode() {
@@ -362,15 +415,21 @@
 	        }).open();
 	    }
 	</script>
-		<input type="submit" value="수정하기">
-		<input type="button" value="돌아가기" onclick="location.href='./GoodsList.ag'"> 
-		<input type="button" value="탈퇴하기" onclick="location.href='./Delete.me'">
-		
+	<div class="col-md-8 ml-auto mr-auto fileadd6">
+		<input type="submit" class="btn btn-primary" value="수정하기">
+		<input type="button" class="btn btn-primary" value="돌아가기" onclick="location.href='./GoodsList.ag'"> 
+		<input type="button" class="btn btn-primary" value="탈퇴하기" onclick="location.href='./Delete.me'">
+		</div>
 	</form>	
 	</fieldset>
+	</div>
+		</div>
+		</div>
+		</div>
+		</div>
 	
 <!-- 푸터 -->
-
+<jsp:include page="../inc/bottom.jsp"/>
 <!-- 푸터 -->
 </body>
 </html>

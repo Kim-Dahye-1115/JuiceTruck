@@ -1,4 +1,5 @@
 <!-- 상품 등록 페이지입니다. -->
+<%@page import="javax.swing.text.Document"%>
 <%@page import="com.market.db.GoodsBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,7 +11,7 @@
 <script type="text/javascript">
 
 
-//이미지 미리보기
+//이미지 미리보기 (0)
 	    $(function() {
 	        $("#file0").on('change', function(){
 	            readURL(this);
@@ -28,8 +29,8 @@
 	          reader.readAsDataURL(input.files[0]);
 	        }
 	    }
-///////////////////////////////////////////////////////////////////////////	    
 	    
+//이미지 미리보기 (1)   
 	    $(function() {
 	        $("#file1").on('change', function(){
 	            readURL1(this);
@@ -48,7 +49,7 @@
 	        }
 	    }
  	    
-///////////////////////////////////////////////////////////////////////////		    
+//이미지 미리보기 (2)	    
 	    $(function() {
 	        $("#file2").on('change', function(){
 	            readURL2(this);
@@ -67,7 +68,7 @@
 	        }
 	    }
 	    
-///////////////////////////////////////////////////////////////////////////		    
+//이미지 미리보기(3)	    
 	    $(function() {
 	        $("#file3").on('change', function(){
 	            readURL3(this);
@@ -86,7 +87,7 @@
 	        }
 	    }
 	    
-///////////////////////////////////////////////////////////////////////////		    
+//이미지 미리보기 (4)	    
 	    $(function() {
 	        $("#file4").on('change', function(){
 	            readURL4(this);
@@ -105,7 +106,7 @@
 	        }
 	    }
 	    
-///////////////////////////////////////////////////////////////////////////		    
+//이미지 미리보기 (5)	    
 	    $(function() {
 	        $("#file5").on('change', function(){
 	            readURL5(this);
@@ -123,7 +124,6 @@
 	          reader.readAsDataURL(input.files[0]);
 	        }
 	    }
-	       
 	    
 </script>
 </head>
@@ -146,7 +146,6 @@
 						<!-- 폼 시작 -->
 						<form action="./GoodsModifyProAction.ag" method="post" enctype="multipart/form-data">
 							 <input type="hidden" name="num" value="<%=gb.getG_num() %>" >
-<%-- 							 <input type="hidden" name="oldfile" value="<%=gb.getImgs() %>"> --%>
 							 <input type="hidden" name="oldfile0" value="<%=gb.getImgs().split(",")[0] %>" >
 							 <input type="hidden" name="oldfile1" value="<%=gb.getImgs().split(",")[1] %>" >
 							 <input type="hidden" name="oldfile2" value="<%=gb.getImgs().split(",")[2] %>" >
@@ -156,74 +155,23 @@
 							      
 							<label for="exampleFormControlTextarea1">상품 이미지 첨부</label>
 							
-							<%=gb.getImgs().split(",")[0] %>
-							
 							<!-- 파일첨부 영역 시작 -->
-							<div class="">
-			<img id="imgPre0" src="./upload/<%=gb.getImgs().split(",")[0] %>" width="100" height="100"><br>
-			<input type="file" name="file0" id="file0" accept="image/*" ><br>
-									
-			<img id="imgPre1" src="./upload/<%=gb.getImgs().split(",")[1] %>" width="100" height="100"><br>
-			<input type="file" name="file1" id="file1" accept="image/*" ><br>	
-									
- 			<img id="imgPre2" src="./upload/<%=gb.getImgs().split(",")[2] %>" width="100" height="100"><br>
-			<input type="file" name="file2" id="file2" accept="image/*" ><br>	
-									
-			<img id="imgPre3" src="./upload/<%=gb.getImgs().split(",")[3] %>" width="100" height="100"><br>
-			<input type="file" name="file3" id="file3" accept="image/*" ><br>	
-									
-			<img id="imgPre4" src="./upload/<%=gb.getImgs().split(",")[4] %>" width="100" height="100"><br>
-			<input type="file" name="file4" id="file4" accept="image/*" ><br>	
-									
-			<img id="imgPre5" src="./upload/<%=gb.getImgs().split(",")[5] %>" width="100" height="100"><br>
-			<input type="file" name="file5" id="file5" accept="image/*" ><br>
-										 
-								<!-- 파일첨부버튼(0) -->
-<!-- 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
-									<div class="fileinput-new thumbnail img-raised"></div>
-									 <div class="fileinput-preview fileinput-exists thumbnail img-raised image3"></div>
-										<div>
-										  <span	class="btn btn-primary btn-fab btn-fab-mini btn-file btn-round">
-											<button class="fileinput-new">
-												<i class="material-icons">add_photo_alternate</i>
-											</button> 
-											    <span class="fileinput-exists">
-												  <i class="material-icons">image</i>
-												</span>
-											파일 인풋 버튼 (0)	 
-											<input type="file" name="file0" accept="image/gif,image/jpeg,image/png"/>
-										  </span> 
-										    <a href="#pablo"
-											class="btn btn-danger btn-fab btn-fab-mini btn-round fileinput-exists"
-											data-dismiss="fileinput">
-											  <i class="fa fa-times"></i>
-											</a>
-									    </div>
+							<div class="modith">
+							
+							<!-- 파일첨부버튼(0) -->
+								<div class="image3 modiin">
+									<img id="imgPre0" src="./upload/<%=gb.getImgs().split(",")[0]%>" > 
+									<span class="btn btn-primary btn-fab btn-fab-mini btn-file btn-round">
+										<span class="fileinput-exists"> 
+										<i class="material-icons">image</i>
+									</span> 
+									<!-- 파일 인풋 버튼 (0)--> 
+									<input id="file0" type="file" name="file0" accept="image/*">
+									</span>
+
+								<!-- 파일첨부버튼(1) -->
 								</div>
-								파일첨부버튼(1)
-								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
-									<div class="fileinput-new thumbnail img-raised"></div>
-									  <div class="fileinput-preview fileinput-exists thumbnail img-raised image3"></div>
-										<div>
-										  <span	class="btn btn-primary btn-fab btn-fab-mini btn-file btn-round">
-											<button class="fileinput-new">
-												<i class="material-icons">add_photo_alternate</i>
-											</button> 
-											    <span class="fileinput-exists">
-												  <i class="material-icons">image</i>
-												</span> 
-											파일 인풋 버튼 (1)	
-											<input type="file" name="file1" />
-										  </span> 
-										    <a href="#pablo"
-											class="btn btn-danger btn-fab btn-fab-mini btn-round fileinput-exists"
-											data-dismiss="fileinput">
-											  <i class="fa fa-times"></i>
-											</a>
-									    </div>
-								</div>
-								
-								파일첨부버튼(2)
+							<%if(gb.getImgs().split(",")[1].equals("null")){ %>
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 									<div class="fileinput-new thumbnail img-raised"></div>
 									  <div class="fileinput-preview fileinput-exists thumbnail img-raised image3"></div>
@@ -235,9 +183,9 @@
 											    <span class="fileinput-exists">
 												  <i class="material-icons">image</i>
 												</span>
-											파일 인풋 버튼 (2)	 
-											<input type="file" name="file2" />
-										  </span> 
+											<!-- 파일 인풋 버튼 (1)-->	 
+											<input type="file" name="file1" accept="image/*">
+										  </span>   
 										    <a href="#pablo"
 											class="btn btn-danger btn-fab btn-fab-mini btn-round fileinput-exists"
 											data-dismiss="fileinput">
@@ -245,8 +193,21 @@
 											</a>
 									    </div>
 								</div>
-								
-								파일첨부버튼(3)
+								<%}else{ %>
+								<div class=" image3 modiin">
+									<img id="imgPre1" src="./upload/<%=gb.getImgs().split(",")[1] %>">
+									<span class="btn btn-primary btn-fab btn-fab-mini btn-file btn-round">
+										<span class="fileinput-exists"> 
+										<i class="material-icons">image</i>
+									</span> 
+									<!-- 파일 인풋 버튼 (1)--> 
+									<input type="file" name="file1" id="file1" accept="image/*">
+									</span>
+								</div>
+								<%} %>
+							<!-- 파일첨부버튼(2) -->
+							
+							<%if(gb.getImgs().split(",")[2].equals("null")){ %>
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 									<div class="fileinput-new thumbnail img-raised"></div>
 									  <div class="fileinput-preview fileinput-exists thumbnail img-raised image3"></div>
@@ -257,10 +218,10 @@
 											</button> 
 											    <span class="fileinput-exists">
 												  <i class="material-icons">image</i>
-												</span> 
-										  파일 인풋 버튼 (3)
-										  <input type="file" name="file3" />
-										  </span> 
+												</span>
+											<!-- 파일 인풋 버튼 (1)-->	 
+											<input type="file" name="file2" accept="image/*">
+										  </span>   
 										    <a href="#pablo"
 											class="btn btn-danger btn-fab btn-fab-mini btn-round fileinput-exists"
 											data-dismiss="fileinput">
@@ -268,8 +229,22 @@
 											</a>
 									    </div>
 								</div>
-								
-								파일첨부버튼(4)
+								<%}else{ %>
+									<div class=" image3 modiin">
+										<img id="imgPre2" src="./upload/<%=gb.getImgs().split(",")[2] %>">
+										<span class="btn btn-primary btn-fab btn-fab-mini btn-file btn-round">
+											<span class="fileinput-exists">
+											<i class="material-icons">image</i>
+										</span> 
+										<!-- 파일 인풋 버튼 (2)--> 
+										<input type="file" name="file2" id="file2" accept="image/*">
+										</span>
+									</div>
+								<%} %>
+							
+							 
+							<!-- 파일첨부버튼(3) -->
+							<%if(gb.getImgs().split(",")[3].equals("null")){ %>
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 									<div class="fileinput-new thumbnail img-raised"></div>
 									  <div class="fileinput-preview fileinput-exists thumbnail img-raised image3"></div>
@@ -280,10 +255,10 @@
 											</button> 
 											    <span class="fileinput-exists">
 												  <i class="material-icons">image</i>
-												</span> 
-										  파일 인풋 버튼 (4)		
-										  <input type="file" name="file4" />
-										  </span> 
+												</span>
+											<!-- 파일 인풋 버튼 (1)-->	 
+											<input type="file" name="file3" accept="image/*">
+										  </span>   
 										    <a href="#pablo"
 											class="btn btn-danger btn-fab btn-fab-mini btn-round fileinput-exists"
 											data-dismiss="fileinput">
@@ -291,8 +266,22 @@
 											</a>
 									    </div>
 								</div>
+								<%}else{ %>
+								<div class=" image3 modiin">
+									<img id="imgPre3" src="./upload/<%=gb.getImgs().split(",")[3] %>">
+									<span class="btn btn-primary btn-fab btn-fab-mini btn-file btn-round">
+										<span class="fileinput-exists"> 
+										<i class="material-icons">image</i>
+									</span> 
+									<!-- 파일 인풋 버튼 (3)--> 
+									<input type="file" name="file3" id="file3" accept="image/*">
+									</span>
+								</div>
 								
-								파일첨부버튼(5)
+								<%} %>
+							
+							<!-- 파일첨부버튼(4) -->
+							<%if(gb.getImgs().split(",")[4].equals("null")){ %>
 								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 									<div class="fileinput-new thumbnail img-raised"></div>
 									  <div class="fileinput-preview fileinput-exists thumbnail img-raised image3"></div>
@@ -303,17 +292,66 @@
 											</button> 
 											    <span class="fileinput-exists">
 												  <i class="material-icons">image</i>
-												</span> 
-										  파일 인풋 버튼 (5)
-										  <input type="file" name="file5" />
-										  </span> 
+												</span>
+											<!-- 파일 인풋 버튼 (1)-->	 
+											<input type="file" name="file4" accept="image/*">
+										  </span>   
 										    <a href="#pablo"
 											class="btn btn-danger btn-fab btn-fab-mini btn-round fileinput-exists"
 											data-dismiss="fileinput">
 											  <i class="fa fa-times"></i>
 											</a>
 									    </div>
-								</div> -->
+								</div>
+								<%}else{ %>
+								<div class=" image3 modiin">
+									<img id="imgPre4" src="./upload/<%=gb.getImgs().split(",")[4] %>">
+									<span class="btn btn-primary btn-fab btn-fab-mini btn-file btn-round">
+										<span class="fileinput-exists"> 
+										<i class="material-icons">image</i>
+									</span> 
+									<!-- 파일 인풋 버튼 (4)--> 
+									<input type="file" name="file4" id="file4" accept="image/*">
+									</span>
+								</div>
+							    <%} %>
+							    
+							    
+							<!-- 파일첨부버튼(5) -->
+							<%if(gb.getImgs().split(",")[5].equals("null")){ %>
+								<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+									<div class="fileinput-new thumbnail img-raised"></div>
+									  <div class="fileinput-preview fileinput-exists thumbnail img-raised image3"></div>
+										<div>
+										  <span	class="btn btn-primary btn-fab btn-fab-mini btn-file btn-round">
+											<button class="fileinput-new">
+												<i class="material-icons">add_photo_alternate</i>
+											</button> 
+											    <span class="fileinput-exists">
+												  <i class="material-icons">image</i>
+												</span>
+											<!-- 파일 인풋 버튼 (1)-->	 
+											<input type="file" name="file5" accept="image/*">
+										  </span>   
+										    <a href="#pablo"
+											class="btn btn-danger btn-fab btn-fab-mini btn-round fileinput-exists"
+											data-dismiss="fileinput">
+											  <i class="fa fa-times"></i>
+											</a>
+									    </div>
+								</div>
+								<%}else{ %>
+								<div class=" image3 modiin">
+									<img id="imgPre5" src="./upload/<%=gb.getImgs().split(",")[5] %>">
+									<span class="btn btn-primary btn-fab btn-fab-mini btn-file btn-round">
+										<span class="fileinput-exists"> 
+										<i class="material-icons">image</i>
+									</span> 
+									<!-- 파일 인풋 버튼 (5)--> 
+									<input type="file" name="file5" id="file5" accept="image/*">
+									</span>
+								</div>
+							<%} %>
 							</div>
 							<!-- 파일첨부 영역 끝 -->
 
@@ -329,7 +367,7 @@
 							<div class="form-group">
 								<select class="form-control selectpicker"
 									data-style="btn btn-link" id="exampleFormControlSelect1" name="category" required>
-									<option selected>상품 카테고리</option>
+									<option value="" selected disabled>상품 카테고리</option>
 									<option value="여성의류"
 									<%if(gb.getCategory().equals("여성의류")){ %> selected
 							        <%} %>
@@ -394,7 +432,7 @@
 							<div class="form-group">
 								<select class="form-control selectpicker"
 									data-style="btn btn-link" id="exampleFormControlSelect1" name="condi" required>
-									<option selected>상품 상태</option>
+									<option value="" selected disabled>상품 상태</option>
 									<option value="새 것"
 									<%if(gb.getCondi().equals("새 것")){ %>
 							           selected
@@ -406,6 +444,12 @@
 							           selected
 							           <%} %>
 									>중고</option>
+									
+									<option value="거래 완료"
+									<%if(gb.getCondi().equals("거래 완료")){ %>
+							           selected
+							           <%} %>
+									>거래 완료</option>
 								</select>
 							</div>
 							
@@ -413,7 +457,7 @@
 							<div class="form-group">
 								<select class="form-control selectpicker"
 									data-style="btn btn-link" id="exampleFormControlSelect1" name="nego" required>
-									<option selected>네고 가능 여부</option>
+									<option value="" selected disabled>네고 가능 여부</option>
 									<option value="가능"
 									<%if(gb.getNego().equals("가능")){ %>
 							           selected

@@ -77,73 +77,60 @@
 		<!-- 헤더 -->
 		<jsp:include page="../inc/top.jsp"/>
 		<!-- 헤더 -->
-		<br><br><br><br><br><br>
 		
 		<%
 		  String nick = (String) session.getAttribute("nick");
+		  String w_nick = nick;
 		%>
-		
-		<h2> 리뷰등록 페이지 </h2>
+<div class="main main-raised">
+	<div class="container">
+		<div class="section section-text">
+			<div class="row">
+				<div class="col-md-9 ml-auto mr-auto">
+					<h3 class="title">리뷰등록 페이지</h3>		
 		   
 		   <form action="./reviewWriteAction.re" method="post" enctype="multipart/form-data" name="fr" onsubmit="return check();">
 		   <input type="hidden" name="re_star" id="re_star" value="">  
-		     <table border="1">
-		        <tr>
-		        	<td>
-		        	  <!-- 판매자 이미지 가져오기 -->
-		        	  <img alt="판매자 이미지" src="" >
-		        	</td>
-			        <td>
-			          <input type="text" name="s_nick" value="에이" readonly>
-			        </td>
-		        </tr>
-		        <tr>
-		        	<td>
-		        	  <!-- 작성자 이미지 가져오기 -->
-		        	  <img alt="작성자 이미지" src="">
-		        	</td>
-			        <td>
-			          <input type="text" name="w_nick" value="<%=nick %>" readonly>
-			        </td>
-		        </tr>
+		        <div class="col">
+		        <label for="exampleFormControlTextarea1" >판매자</label>
+					<input type="text" class="form-control maintext" name="s_nick" value="<%=request.getParameter("s_nick") %>" readonly>
+					<input type="hidden" class="form-control maintext" name="w_nick" value="<%=w_nick %>" readonly>
+				</div>
 		        
 		        <!-- 이미지 클릭시 id값을 넘겨줄것 -->
 		        <!-- 자바스크립트를 통해 클릭시 이미지 변경 -->
-		        <tr>
-		        	<td>별점</td>
-		        	<td>
-		        	  <i class="material-icons" id="1">star_outline</i>
-		        	  <i class="material-icons" id="2">star_outline</i>
-		        	  <i class="material-icons" id="3">star_outline</i>
-		        	  <i class="material-icons" id="4">star_outline</i>
-		        	  <i class="material-icons" id="5">star_outline</i>
-		        	</td>
-		        </tr>
 		        
-		        <tr>
-			        <td>첨부 파일</td>
-			        <td>
+		        	<label for="exampleFormControlTextarea1" class="rews">별점</label>
+		        	<div>
+		        	  <i class="material-icons starpoint" id="1">star_outline</i>
+		        	  <i class="material-icons starpoint" id="2">star_outline</i>
+		        	  <i class="material-icons starpoint" id="3">star_outline</i>
+		        	  <i class="material-icons starpoint" id="4">star_outline</i>
+		        	  <i class="material-icons starpoint" id="5">star_outline</i>
+		        	</div>
+		        
+			        <label for="exampleFormControlTextarea1" class="rews">첨부 파일</label>
 			          <!-- 이미지 파일만 업로드 가능하게 구현 --> 
+			         <div> 
 			          <input type="file" name="file" accept="image/*">
-			        </td>
-		        </tr>
+		             </div>
+				<div class="form-group dt2">
+					<label for="exampleFormControlTextarea1" >상세 사항</label>
+					<textarea class="form-control maintext" id="exampleFormControlTextarea1" name="re_content"
+						rows="10" maxlength="600" placeholder="판매자에 대한 리뷰를 입력하세요. 최대 600자" required></textarea>
+				</div>		        
 		        
-		        <tr>
-			        <td>리뷰내용</td>
-			        <td>
-			          <textarea rows="20" cols="40" name="re_content" maxlength="150"></textarea>
-			        </td>
-		        </tr>
-		        
-		        <tr>
-			        <td colspan="2">
-			          <input type="submit" value="리뷰등록">
-			          <input type="reset" value="초기화">
-			        </td>
-		        </tr>
-		     </table>  
+		        <div class="col-md-5 ml-auto mr-auto fileadd6">
+					<input type="submit" class="btn btn-primary" value="리뷰 등록">
+					<input type="reset" class="btn btn-primary" value="초기화">
+									
+				</div>
 		   </form>
-		
+				</div>
+			</div>
+		</div>
+	</div>
+</div>		
 		<!-- 푸터 -->
 		<jsp:include page="../inc/bottom.jsp"/>
 		<!-- 푸터 -->

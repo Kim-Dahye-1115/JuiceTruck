@@ -64,7 +64,7 @@ public class MemberDeleteAction implements Action {
 			
 			out.print("<script>");
 			out.print(" alert('탈퇴가 완료되었습니다.'); ");
-			out.print(" location.href='../GoodsList.ag'; ");
+			out.print(" location.href='./GoodsList.ag'; ");
 			out.print("</script>");
 					
 			out.close();

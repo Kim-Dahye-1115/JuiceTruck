@@ -20,8 +20,8 @@ public class smsAction implements ActionIdCheck {
 		String phone = request.getParameter("phone");
 		//System.out.println(phone);
 		
-		 	String api_key = "NCSJFBVFK4LUACPB";
-	        String api_secret = "9US9MRLDMVYQDKUEHY52ODKCRH0GU5MH";
+		 	String api_key = "NCSSTXZBHFVIIBVU";
+	        String api_secret = "MECJ78DYVYCDP5KTHFO3QPU5XUXQFKMY";
 	        Coolsms coolsms = new Coolsms(api_key, api_secret);
 	        
 	        
@@ -39,7 +39,7 @@ public class smsAction implements ActionIdCheck {
 			set.put("to", phone); // 수신번호
 
 			
-			set.put("from", "01045979602"); // 발신번호
+			set.put("from", "01099004850"); // 발신번호
 			set.put("text", "[주스트럭] 본인 확인 인증번호는 ["+numStr+"] 입니다."); // 문자내용
 			set.put("type", "sms"); // 문자 타입
 

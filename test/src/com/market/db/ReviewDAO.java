@@ -189,7 +189,7 @@ public class ReviewDAO {
 				
 				// if문 추가변경
 				if(s_nick != null){
-					sql="select * from review where s_nick=? limit ?,?";
+					sql="select * from review where s_nick=? order by re_num desc limit ?,?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, s_nick);
 					pstmt.setInt(2, pv.getN_startNum()-1);
@@ -197,7 +197,7 @@ public class ReviewDAO {
 				
 					System.out.println("s_nick 있음!");
 				}else if(s_nick == null){
-					sql="select * from review where w_nick=? limit ?,?";
+					sql="select * from review where w_nick=? order by re_num desc limit ?,?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, w_nick);
 					pstmt.setInt(2, pv.getN_startNum()-1);
@@ -255,9 +255,9 @@ public class ReviewDAO {
 				
 				pstmt.setString(1, rb.getS_nick());
 				pstmt.setString(2, rb.getW_nick());
-				pstmt.setString(4, rb.getRe_content());
-				pstmt.setInt(5, rb.getRe_star());
-				pstmt.setInt(6, rb.getRe_num());
+				pstmt.setString(3, rb.getRe_content());
+				pstmt.setInt(4, rb.getRe_star());
+				pstmt.setInt(5, rb.getRe_num());
 			}else{
 				// sql & pstmt
 				sql = "update review set s_nick=?, w_nick=?, "
@@ -314,5 +314,38 @@ public class ReviewDAO {
 		
 	}
 	// deleteReview(re_num)
+	
+	//getAvgReStar(s_nick)
+	public float getAvgReStar(String s_nick, String w_nick){
+		float avgStar = 0;
+		try {
+			con = getCon();
+			if(s_nick == null){
+				sql = "select avg(re_star) from review where w_nick=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, w_nick);
+				
+				System.out.println("DAO : s_nick 없음.");
+			}else{
+				sql = "select avg(re_star) from review where s_nick=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, s_nick);
+				
+				System.out.println("DAO : s_nick 있음.");
+			}
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				avgStar = rs.getFloat(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return avgStar;
+	}
+	//getAvgReStar(s_nick)
 	
 }

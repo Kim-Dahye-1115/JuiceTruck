@@ -82,7 +82,6 @@
 	String nick = (String) session.getAttribute("nick");
 	
     String nick1 = gb.getNick();
-    
  %>
    <input type="hidden" name="num" id="num" value="<%=gb.getG_num()%>">
    <input type="hidden" name="oldfile" id="oldfile" value="<%=gb.getImgs()%>">
@@ -101,6 +100,14 @@
 					<div class="col-md-6 col-sm-6">
 						<!-- 이미지 슬라이드/큰이미지 -->
 						<div class="tab-content">
+						
+							<!-- 거래완료 필터효과 -->
+							<%if(gb.getCondi().equals("거래 완료")){ %>
+								<h1 class="sold">SOLD OUT!</h1> 
+								<div class="img-cover"></div>
+							<%} %>	
+							<!-- 거래완료 필터효과 -->
+							
 							<div class="tab-pane active" id="product-page1">
 								<img class="image1" src="./upload/<%=gb.getImgs().split(",")[0] %>">
 							</div>
@@ -163,8 +170,8 @@
 
 									<!-- 공유 -->
 									<div class="cons share">
+										<input type="text" style="display: none" id="urlShare" class="alert-default cpcp" readonly>
 										<i class="material-icons" id="share">share</i>
-										<input type="text" style="display: none" id="urlShare" class="alert alert-default cpcp" value="" readonly>
 									</div>
 								</div>
 								<!-- 게시글 상태 영역 끝 -->
@@ -339,7 +346,7 @@
 									<% } else if(email != null && hb != null && email.equals(hb.getH_email()) && h_g_num == hb.getH_g_num()){ %>
 									
 										<!-- 찜하기 취소 버튼 -->
-										<div class="col-md-5">
+										<div class="col-md-6">
 											<button id="heartDeleteBtn" class="btn btn-primary btn-lg" onclick="location.href='./heartDelete.he?num=<%=hb.getH_g_num()%>&h_num=<%=hb.getH_num()%>'">
 												<i class="material-icons">favorite</i> 찜취소
 											</button>
@@ -359,24 +366,40 @@
 					</div>
 				</div>
 				<hr>
-				<!-- 상세 설명 영역 -->			
+				<!-- 상세 설명 영역 -->
 				<div class="main-content">
-					<%=content %>
+					<h2>상품설명</h2>
+					<%=content%>
 				</div>
-				
-				<div class="review-page">
-				
-				<div>
-                   <button onclick="location.href='./reviewList.re?s_nick=<%=gb.getNick()%>'">
-                      	판매자 리뷰
-                   </button>
-                </div>
-                
-				<!-- 리뷰 페이지 대기중 -->
-				<%-- <jsp:include page="../review/reviewList.jsp"/> --%>
-				<!-- 리뷰 페이지 대기중 -->
+
+				<hr>
+				<!-- 판매자 리뷰 페이지 -->
+				<div class="main-content">
+				  <h2>판매자 정보</h2>
+				   <div class="sell">	
+					<img class="rounded-circle img-fluid image2" src="${requestScope.userImg }">
+					<a href="./reviewList.re?s_nick=<%=gb.getNick() %>">
+					<div class="sellnick"><%=gb.getNick() %></div>
+					   <%
+					     float avgStar = (float) request.getAttribute("avgStar");
+					   %>
+					   ${avgStar }
+					   <%
+					     for(int i=1;i<=avgStar;i++){ %>
+					       <i class="material-icons">star</i>
+					   <%
+					     }
+					     for(int j=1;j<=(5-avgStar);j++){ %>
+					       <i class="material-icons">star_outline</i>
+					   <%
+					     }
+					   %>
+					<br>
+					판매자 리뷰 보러가기 <i class="material-icons">keyboard_arrow_right</i></a>
+				   </div>
 				</div>
-				
+					<!-- 판매자 리뷰 페이지  -->
+				<hr>
 				<!-- 상세 설명 영역 -->			
 			</div>
          </div>

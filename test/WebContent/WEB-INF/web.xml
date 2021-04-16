@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>Juice</display-name>
+  <display-name>test10</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -9,7 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
     <servlet-name>ChatSubmitServlet</servlet-name>
     <servlet-class>chat.ChatSubmitServlet</servlet-class>
@@ -18,7 +17,6 @@
     <servlet-name>ChatSubmitServlet</servlet-name>
     <url-pattern>/chatSubmitServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ChatListServlet</servlet-name>
     <servlet-class>chat.ChatListServlet</servlet-class>
@@ -27,7 +25,6 @@
     <servlet-name>ChatListServlet</servlet-name>
     <url-pattern>/chatListServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ChatUnreadServlet</servlet-name>
     <servlet-class>chat.ChatUnreadServlet</servlet-class>
@@ -36,7 +33,6 @@
     <servlet-name>ChatUnreadServlet</servlet-name>
     <url-pattern>/chatUnread</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ChatBoxServlet</servlet-name>
     <servlet-class>chat.ChatBoxServlet</servlet-class>
@@ -45,7 +41,6 @@
     <servlet-name>ChatBoxServlet</servlet-name>
     <url-pattern>/chatBox</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>MapServlet</servlet-name>
     <servlet-class>chat.MapServlet</servlet-class>
@@ -54,5 +49,12 @@
     <servlet-name>MapServlet</servlet-name>
     <url-pattern>/mapServlet</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>UserFindServlet</servlet-name>
+    <servlet-class>chat.UserFindServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserFindServlet</servlet-name>
+    <url-pattern>/userFindServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

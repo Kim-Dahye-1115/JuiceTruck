@@ -31,7 +31,7 @@
 			<input type="hidden" value="${param.clickLatlng }" name="clickLatlng" id="clickLatlng">
 			<input type="hidden" value="${param.toID }" name="toID">
 			<input type="hidden" value="<%=session.getAttribute("nick") %>" name="fromID">
-			<input type="hidden" value="지도" name="mapImg">
+			<input type="hidden" value="http://localhost:8088/Juice/chatting/map.jsp?clickLatlng=" name="mapImg">
 			
 			<div class="mapSearch">
 				<input class="txt_input" type="text" value="${param.addr }" name="addr" id="addr" placeholder="주소를 입력해주세요" autocomplete="off">

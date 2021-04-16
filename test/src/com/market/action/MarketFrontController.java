@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"*.re","*.ag","*.se","*.he"}) //url 패턴(가상주소의 형태)
+@WebServlet(urlPatterns = {"*.re","*.ag","*.se","*.he","*.mg"}) //url 패턴(가상주소의 형태)
 public class MarketFrontController extends HttpServlet {
 	
 	/* 컨트롤러 : 모델과 뷰의 연결지점 => 서블릿 */
@@ -217,6 +217,18 @@ public class MarketFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/MyGoods.mg")){
+			System.out.println("C : /MyGoods.mg 호출");
+			System.out.println("C : DB에서 정보를 가져와서 view 출력");
+			
+			action = new MyGoodsAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		System.out.println("\n 2. 가상주소 매핑");
 		

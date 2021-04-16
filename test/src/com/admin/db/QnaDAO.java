@@ -115,7 +115,7 @@ public class QnaDAO {
 			con = getCon();
 			
 			//3.sql & pstmt
-			if(email.equals("admin@itwill.com")){	//관리자 일때
+			if(email.equals("juicetruck.ad@gmail.com")){	//관리자 일때
 				sql = "select * from qna order by q_re_ref desc limit ?,?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, pv.getN_startNum()-1);
@@ -169,7 +169,7 @@ public class QnaDAO {
 				 // 1.2. 디비연결
 				getCon();
 				 // 3. sql(select) 생성 & pstmt 객체 
-				if(email.equals("admin@itwill.com")){	//관리자 일때
+				if(email.equals("juicetruck.ad@gmail.com")){	//관리자 일때
 					sql = "select count(*) from qna";
 					pstmt = con.prepareStatement(sql);
 				} else{	//일반회원 일때

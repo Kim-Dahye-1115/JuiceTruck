@@ -24,7 +24,7 @@ public class MapServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String fromID =  request.getParameter("fromID");
 		String toID = request.getParameter("toID");
-		String mapImg = request.getParameter("clickLatlng");
+		String mapImg = request.getParameter("mapImg")+request.getParameter("clickLatlng");
 		
 		if(fromID == null || fromID.equals("") // fromID,toID,chatContent 값이 널 값이거나, 비어있다면 오류 발생. 왜냐하면  보낸사람과 받는 사람이 모두 들어가 있어야 하기 때문.
 				|| toID == null || toID.equals("") 

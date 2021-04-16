@@ -99,16 +99,13 @@
 						chatTime +
 						'</span>' +
 						'</h4>' +
-						'<p>' +
-						chatContent +
-						'</p>' +
+						(chatContent.substring(0,7) == "http://" ? '<a href="'+chatContent+'">지도</a>': '<p>'+chatContent+'</p>')+
 						'<div id="div_1"></div>'+
 						'</div>' +
 						'</div>' +
 						'</div>' +
 						'</div>' +
 						'<hr>');
-				$("#div_1").load("../chatting/map.jsp");
 			$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
 		}
 		function getInfiniteChat(){
@@ -192,7 +189,7 @@
 						<%=messageContent %>
 					</div>
 					<div class ="modal-footer">
-						<button type ="button" class ="btn btn-primary" data-dismiss="modal">확인</button>
+						<button type ="button" class ="btn btn-primary" data-dismiss="modal" onclick="window.open('','_self').close();">확인</button>
 					</div>
 				</div>
 			</div>

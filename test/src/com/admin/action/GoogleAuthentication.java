@@ -11,7 +11,7 @@ public class GoogleAuthentication extends Authenticator {
 	PasswordAuthentication passAuth;
 	
 	public GoogleAuthentication(){
-		passAuth = new PasswordAuthentication("jelee5520", "hndzlpalrxeuupwl");
+		passAuth = new PasswordAuthentication("juicetruck.ad", "mksflgoweezxeiqu");
 	}
 	
 	@Override

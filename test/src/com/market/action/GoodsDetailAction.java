@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import com.market.db.GoodsBean;
 import com.market.db.GoodsDAO;
+import com.market.db.ReviewDAO;
+import com.member.db.MemberDAO;
 
 public class GoodsDetailAction implements Action {
 
@@ -16,21 +18,21 @@ public class GoodsDetailAction implements Action {
 		
 		HttpSession session = request.getSession();
 		String email = (String) session.getAttribute("email");
-		/*ActionForward forward = new ActionForward();
-		if(email == null){
-			forward.setPath("./MemberLogin.me");
-			forward.setRedirect(true);
-			return forward;
-		}*/
+		String nick = (String) session.getAttribute("nick");
 		
 		// 전달된 데이터 저장(파라미터값)
 		int num = Integer.parseInt(request.getParameter("num"));
 		// DAO 객체 생성 - getGoods(num)
-		GoodsDAO gdao = new GoodsDAO();
+		GoodsDAO gdao = new GoodsDAO(); 
+		MemberDAO mdao = new MemberDAO();
+		ReviewDAO rdao = new ReviewDAO();
 		
 		GoodsBean goods = gdao.getGoods(num);
+		
 		// request 영역에 저장
 		request.setAttribute("goods", goods);
+		request.setAttribute("userImg", mdao.getProfile(goods.getNick()));
+		request.setAttribute("avgStar", rdao.getAvgReStar(goods.getNick(),nick));
 		
 		// 페이지 이동
 		ActionForward forward = new ActionForward();

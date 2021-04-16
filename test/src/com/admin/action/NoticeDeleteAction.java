@@ -20,7 +20,7 @@ public class NoticeDeleteAction implements Action {
 		String email = (String) session.getAttribute("email");
 				
 		ActionForward forward = new ActionForward();
-		if(!(email.equals("admin@itwill.com"))){
+		if(!(email.equals("juicetruck.ad@gmail.com"))){
 			forward.setPath("./noticeList.no");
 			forward.setRedirect(true);
 			return forward;

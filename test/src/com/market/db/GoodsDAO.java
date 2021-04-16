@@ -240,38 +240,60 @@ public class GoodsDAO {
 	
 	
 	// modifyGoods(gb)
-	public void modifyGoods(GoodsBean gb) {
+		public void modifyGoods(GoodsBean gb) {
 
-		try {
-			// 1.2. 디비연결
-			con = getCon();
-			// 3. sql (update) & pstmt 객체 생성
-			sql = "update goods set "
-					+ "g_name=?,category=?,nego=?,price=?,content=?,condi=? "
-					+ "where g_num=?";
+			try {
+				// 1.2. 디비연결
+				con = getCon();
+				// 3. sql (update) & pstmt 객체 생성
 
-			pstmt = con.prepareStatement(sql);
+				if(gb.getImgs() == null){
+					sql = "update goods set "
+							+ "g_name=?,category=?,nego=?,price=?,content=?,condi=?"
+							+ "where g_num=?";
 
-			pstmt.setString(1, gb.getG_name());
-			pstmt.setString(2, gb.getCategory());
-			pstmt.setString(3, gb.getNego());
-			pstmt.setInt(4, gb.getPrice());
-			pstmt.setString(5, gb.getContent());
-			pstmt.setString(6, gb.getCondi());
-			pstmt.setInt(7, gb.getG_num());
+					pstmt = con.prepareStatement(sql);
+		
+					pstmt.setString(1, gb.getG_name());
+					pstmt.setString(2, gb.getCategory());
+					pstmt.setString(3, gb.getNego());
+					pstmt.setInt(4, gb.getPrice());
+					pstmt.setString(5, gb.getContent());
+					pstmt.setString(6, gb.getCondi());
+					pstmt.setInt(7, gb.getG_num());
 
-			// 4. sql구문 실행
-			pstmt.executeUpdate();
+				} else {
+					
+					sql = "update goods set "
+							+ "g_name=?,category=?,nego=?,price=?,content=?,condi=?,imgs=?"
+							+ "where g_num=?";
 
-			System.out.println("DAO : 상품정보 수정완료!");
+					pstmt = con.prepareStatement(sql);
+		
+					pstmt.setString(1, gb.getG_name());
+					pstmt.setString(2, gb.getCategory());
+					pstmt.setString(3, gb.getNego());
+					pstmt.setInt(4, gb.getPrice());
+					pstmt.setString(5, gb.getContent());
+					pstmt.setString(6, gb.getCondi());
+					pstmt.setString(7, gb.getImgs());
+					pstmt.setInt(8, gb.getG_num());
+					
+				}
+				
+				
+				// 4. sql구문 실행
+				pstmt.executeUpdate();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeDB();
+				System.out.println("DAO : 상품정보 수정완료!");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
 		}
-	}
-	// modifyGoods(gb)
+		// modifyGoods(gb)
 
 	// deleteGoods(num)
 	public void deleteGoods(int num) {
@@ -295,5 +317,61 @@ public class GoodsDAO {
 		}
 	}
 	// deleteGoods(num)
+	
+	// getMyGoodsList(nick)
+		public List<GoodsBean> getMyGoodsList(String nick) {
+			
+			List<GoodsBean> MyGoodsList = new ArrayList<GoodsBean>();
+			
+			
+			try {
+				con = getCon();
+				
+				sql = "select * from goods where nick=? order by g_num desc";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, nick);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					GoodsBean gb = new GoodsBean();
+					
+					gb.setCategory(rs.getString("category"));
+					gb.setContent(rs.getString("content"));
+					gb.setDate(rs.getDate("reg_date"));
+					gb.setG_name(rs.getString("g_name"));
+					gb.setG_num(rs.getInt("g_num"));
+					gb.setImgs(rs.getString("imgs"));
+					gb.setHeart(rs.getInt("heart"));
+					gb.setLocation(rs.getString("location"));
+					gb.setNego(rs.getString("nego"));
+					gb.setNick(rs.getString("nick"));
+					gb.setPrice(rs.getInt("price"));
+					gb.setRead_count(rs.getInt("read_count"));
+					gb.setCondi(rs.getString("condi"));
+					
+					MyGoodsList.add(gb);
+					
+					System.out.println("DAO : 내 상품 목록 저장 :"+MyGoodsList);				
+					
+				}
+				
+				System.out.println("DAO : 내 상품 목록 저장 완료!");				
+				
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally{
+				closeDB();
+			}
+			
+			
+			
+			return MyGoodsList;
+		}
+		
+		// getMyGoodsList(nink)
 
 }

@@ -1,6 +1,7 @@
 package com.market.action;
 
-import java.util.List;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import com.market.db.ReviewBean;
 import com.market.db.ReviewDAO;
+import com.member.db.MemberDAO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -16,6 +18,9 @@ public class ReviewWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : ReviewAction_excute 실행");
+		
+		request.setCharacterEncoding("utf8");
+		response.setCharacterEncoding("utf8");
 		
 		HttpSession session = request.getSession();
 		String nick = (String) session.getAttribute("nick");
@@ -67,12 +72,18 @@ public class ReviewWriteAction implements Action {
 		
 		// DAO 객체 생성
 		ReviewDAO rdao = new ReviewDAO();
+		MemberDAO mdao = new MemberDAO();
 		rdao.insertReview(rb);
 		
 		request.setAttribute("rb", rb);
+		//request.setAttribute("userImg", mdao.getProfile(rb.getS_nick()));
+		//request.setAttribute("avgStar", rdao.getAvgReStar(rb.getS_nick(),rb.getW_nick()));
+		
+		System.out.println("M : s_nick >> "+rb.getS_nick());
+		
 		
 		// 페이지 이동
-		forward.setPath("./reviewList.re");
+		forward.setPath("./reviewList.re?s_nick="+URLEncoder.encode(rb.getS_nick()));
 		forward.setRedirect(true);
 		
 		return forward;

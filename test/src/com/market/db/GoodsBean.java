@@ -99,12 +99,11 @@ public class GoodsBean {
 		this.condi = condi;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "GoodsBean [g_num=" + g_num + ", nick=" + nick + ", g_name=" + g_name + ", price=" + price + ", content="
 				+ content + ", category=" + category + ", imgs=" + imgs + ", location=" + location + ", nego=" + nego
-				+ ", read_count=" + read_count + ", heart=" + heart + ", date=" + date + ", condi=" + condi + "]";
+				+ ", read_count=" + read_count + ", heart=" + heart + ", date=" + date + ", condi=" + condi +  "]";
 	}
 	
 	

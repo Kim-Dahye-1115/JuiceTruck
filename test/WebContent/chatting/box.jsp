@@ -73,7 +73,7 @@
 			'<img class="media-object img-circle" style="margin: 0 auto; max-width:40px; max-height:40px;" src="'+profile +'">' +
 			'<h5>' + lastID + '</h5></td>' +
 			'<td>' +
-			'<h5>' + chatContent + '</h5>' +
+			'<h5>' + (chatContent.substring(0,7) == "http://" ? '지도': ''+chatContent+'') + '</h5>' +
 			'<span class="label laber-info">' + unread + '</span>' +
 			'<div class ="pull-right">' + chatTime + '</div>' +
 			'</td>' +

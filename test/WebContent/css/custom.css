@@ -260,12 +260,12 @@ tr td:Last-child, tr th:Last-child {
 
 /* 전체 링크 관련 영역 */
 a {
-	color: #000000;
+	color: #9c27b0;
 	text-decoration: none;
 }
 
 a:hover {
-	color: #bbbbbb;
+	color: #d2d2d2;
 	text-decoration: none;
 	cursor: pointer;
 }

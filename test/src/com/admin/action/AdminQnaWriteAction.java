@@ -35,7 +35,7 @@ public class AdminQnaWriteAction implements Action {
 		email = (String) session.getAttribute("email");
 				
 		ActionForward forward = new ActionForward();
-		if(email == null || !email.equals("admin@itwill.com")){
+		if(email == null || !email.equals("juicetruck.ad@gmail.com")){
 			forward.setPath("./qnaList.qa");
 			forward.setRedirect(true);
 			return forward;

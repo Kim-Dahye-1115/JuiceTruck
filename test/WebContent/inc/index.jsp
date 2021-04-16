@@ -8,6 +8,7 @@
 	<body>
 
 		<%
+		// http://itwillbs10.cafe24.com/Juice/GoodsList.ag  (시작 주소)
 		  response.sendRedirect("../GoodsList.ag");
 		%>
 		

@@ -116,86 +116,69 @@
 		<!-- 헤더 -->
 		<jsp:include page="../inc/top.jsp"/>
 		<!-- 헤더 -->
-		<br><br><br><br><br><br>
-		
-		<h2> 리뷰수정 페이지 </h2>
+<div class="main main-raised">
+	<div class="container">
+		<div class="section section-text">
+			<div class="row">
+				<div class="col-md-9 ml-auto mr-auto">
+					<h2 class="title">리뷰등록 페이지</h2>
 		
 			<%  
 				ReviewBean rb = (ReviewBean)request.getAttribute("rb");
+			    String w_nick = (String) session.getAttribute("nick");
 			%>
 		   
 		   <form action="./reviewUpdateProAction.re" method="post" enctype="multipart/form-data" name="fr" onsubmit="return check();">
 		   <input type="hidden" name="re_star" id="re_star" value="<%=rb.getRe_star()%>">
 		   <input type="hidden" name="re_num" value="<%=rb.getRe_num() %>">  
-		     <table border="1">
-		         <tr>
-		        	<td>
-		        	  <!-- 판매자 이미지 가져오기 -->
-		        	  <img alt="판매자 이미지" src="" >
-		        	</td>
-			        <td>
 			          <!-- 닉네임은 readonly타입으로 수정 불가능하게 구현 
 			          	   value는 표현식으로 적용해야함-->
-			          <input type="text" name="s_nick" value="<%=rb.getS_nick() %>" readonly>
-			        </td>
-		         </tr>
-		         <tr>
-		        	<td>
-		        	  <!-- 작성자 이미지 가져오기 -->
-		        	  <img alt="작성자 이미지" src="">
-		        	</td>
-			        <td>
-			          <!-- 닉네임은 readonly타입으로 수정 불가능하게 구현 
-			          	   value는 표현식으로 적용해야함-->
-			          <input type="text" name="w_nick" value="<%=rb.getW_nick() %>" readonly>
-			        </td>
-		         </tr>
+		         <div class="col">
+		        	<label for="exampleFormControlTextarea1" >판매자</label>
+					<input type="text" class="form-control maintext" name="s_nick" value="<%=rb.getS_nick() %>" readonly>
+					<input type="hidden" class="form-control maintext" name="w_nick" value="<%=w_nick %>" readonly>
+				</div>
+		         
 		        
-		         <tr>
-			       <td>별점</td>
-			       <td>
-			         <!-- 반복문 이용하여 전달받은 id값만큼 이미지 표시함 -->
+		        <label for="exampleFormControlTextarea1" class="rews">별점</label>
+			      <div>   <!-- 반복문 이용하여 전달받은 id값만큼 이미지 표시함 -->
 			         <% for(int j=1;j<=rb.getRe_star();j++){ %>
-					     <i class="material-icons" id="<%=j %>">star</i>
+					     <i class="material-icons starpoint" id="<%=j %>">star</i>
 					 <%
 					   }
 					  for(int j=rb.getRe_star()+1;j<=5;j++){ %>
-					     <i class="material-icons" id="<%=j %>">star_outline</i>
+					     <i class="material-icons starpoint" id="<%=j %>">star_outline</i>
 					 <%
 					   }
 					 %>
-			       </td>
-			     </tr>
+			       </div>
 		        
-		         <tr>
-			        <td>첨부 파일</td>
-			        <td>
+		         <label for="exampleFormControlTextarea1" class="rews">첨부 파일</label>
 			          <!-- 처음 작성 때 첨부한 이미지 표시 -->
 			          <!-- id="imgPre"추가, onclick 추가, 파일 사이즈 제어 width,height추가 -->
+			         <div>
 			          <img id="imgPre" src="./upload/<%=rb.getFile()%>" onclick="document.fr.file.click();" width="200" height="200">
 			          <!-- 이미지 파일만 업로드 가능하게 구현 --> 
 			          <!-- id="inputFile" name="inputFile" 추가 -->
+			         </div>
 			          <input type="file" id="inputFile" name="inputFile" accept="image/*">
 			          
-			        </td>
-		         </tr>
-		        
-		         <tr>
-			        <td>리뷰내용</td>
-			        <td>
-			          <textarea rows="20" cols="40" name="re_content" maxlength="150"><%=rb.getRe_content() %></textarea>
-			        </td>
-		         </tr>
-		        
-		         <tr>
-			        <td colspan="2">
-			          <input type="submit" value="리뷰등록">
-			          <input type="reset" value="초기화">
-			        </td>
-		         </tr>
-		     </table>  
+		        <div class="form-group dt2">
+					<label for="exampleFormControlTextarea1" >상세 사항</label>
+					<textarea class="form-control maintext" id="exampleFormControlTextarea1" name="re_content"
+						rows="10" maxlength="600" placeholder="판매자에 대한 리뷰를 입력하세요. 최대 600자" required><%=rb.getRe_content() %></textarea>
+				</div>	
+		         <div class="col-md-5 ml-auto mr-auto fileadd6">
+					<input type="submit" class="btn btn-primary" value="리뷰 등록">
+					<input type="reset" class="btn btn-primary" value="초기화">
+									
+				</div>
 		   </form>
-		
+				</div>
+			</div>
+		</div>
+	</div>
+</div>				
 		<!-- 푸터 -->
 		<jsp:include page="../inc/bottom.jsp"/>
 		<!-- 푸터 -->

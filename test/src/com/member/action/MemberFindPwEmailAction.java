@@ -48,6 +48,10 @@ public class MemberFindPwEmailAction implements Action {
 		mb.setPhone(request.getParameter("phone"));
 		pass = mdao.findpass(mb.getEmail(),mb.getPhone());
 		
+		if(pass.equals("회원정보를 확인해주세요")){
+			request.setAttribute("findpass", pass);
+		}
+		
 		System.out.println(" mb : "+mb);
 		
 		//이메일 전송 스레드로
@@ -63,6 +67,7 @@ public class MemberFindPwEmailAction implements Action {
 				
 				
 				response.setContentType("text/html);charset=UTF-8");
+				
 				
 				// smtp 정보	
 				try{
@@ -87,8 +92,8 @@ public class MemberFindPwEmailAction implements Action {
 					Transport.send(message);
 					result = 1;
 				} catch (Exception e) {
-					result = -1;
 					pass = "메일 전송 실패";
+					result = -1;
 					e.printStackTrace();
 				}
 				//메일전송끝
@@ -97,8 +102,36 @@ public class MemberFindPwEmailAction implements Action {
 		
 		mailThread.start();
 		
-		if(result != 1){
-			request.setAttribute("findpass", pass);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		if(result == -1){ // 전송실패
+			out.print("<script>");
+			out.print(" alert('메일 전송 실패!');");
+			out.print(" history.back();");
+			out.print("</script>");
+			
+			out.close();
+			
+			return null;
+		}/* else if(result == 0){ 
+			out.print("<script>");
+			out.print(" alert('회원 정보를 확인해주세요!');");
+			out.print(" history.back();");
+			out.print("</script>");
+			
+			out.close();
+			
+			return null;
+		} */else if(result == 1){ 
+			out.print("<script>");
+			out.print(" alert('메일 전송 완료!');");
+			out.print(" history.back();");
+			out.print("</script>");
+			
+			out.close();
+			
+			return null;
 		}
 		
 		//if (email == null)

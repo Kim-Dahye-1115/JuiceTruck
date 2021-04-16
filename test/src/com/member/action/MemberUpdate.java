@@ -29,6 +29,10 @@ public class MemberUpdate implements Action {
 		// DAO객체 생성 - getMember(id)
 		MemberDAO mdao = new MemberDAO();
 		MemberBean mb = mdao.getMember(email);
+		
+		if(mb.getUser_img() == null || mb.getUser_img().equals("")){
+			mb.setUser_img("person.png");
+		}
 
 		// request 영역 정보 저장
 		request.setAttribute("mb", mb);

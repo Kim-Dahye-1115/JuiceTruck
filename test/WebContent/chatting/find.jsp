@@ -4,28 +4,26 @@
 <head>
 	<%
 		String userID = null;
-		if(session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
+		if(session.getAttribute("nick") != null) {
+			userID = (String) session.getAttribute("nick");
 		}
 		if(userID == null) {
 			session.setAttribute("messageType", "오류 메세지");
 			session.setAttribute("messageContnet", "현재 로그인이 되어있지 않습니다.");
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("./index");
 			return;
 		}
 	%>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="../assets/js/bootstrap.js"></script>
-	<link rel="stylesheet" href="../css/bootstrap.css">
-	<link rel="stylesheet" href="../css/custom.css">
 	<script type="text/javascript">  //친구찾기 기능이 부여된 에이잭스를 쓰기 위해 자바스크립트 선언
 		function findFunction(){
 			var userID = $('#findID').val(); // 유저 아이디라는 변수를 만들어서, findID라는 ID값이 가지는 값을 가져 옴. (104번줄 findID)
+			
 			$.ajax({ //에이잭스
 				type :"POST", //포스트방식
-				url :'../UserFindServlet', //
+				url :'./UserFindServlet', //
 				data: {userID: userID},
 				success : function(result) {
 					if(result == -1) {
@@ -53,7 +51,7 @@
 					'<tr>' +
 					'<td style="text-align:center;">' +
 					'<img class="media-object img-circle" style="max-width:300px; margin : 0 auto;" src="'+userProfile +'">' +
-					'<h3>' + findID + '</h3><a href ="chat.jsp?toID=' + encodeURIComponent(findID) + '" class ="btn btn-primary pull-right">' + '메세지 보내기</a></td>' +
+					'<h3>' + findID + '</h3><a href ="./chat?toID=' + encodeURIComponent(findID) + '" class ="btn btn-primary pull-right">' + '메세지 보내기</a></td>' +
 					'</tr>' +
 					'</tbody>');
 		}
@@ -63,7 +61,7 @@
 		function getUnread() {
 			$.ajax({
 				type: "post",
-				url : "../chatUnread",
+				url : "./chatUnread",
 				data: {
 					userID : encodeURIComponent('<%=userID%>'), 
 				},

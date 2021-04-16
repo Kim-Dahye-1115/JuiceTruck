@@ -31,6 +31,7 @@
 						<form action="./GoodsAddAction.ag" method="post" enctype="multipart/form-data">
 						
 							<input type="hidden" name="nick" value="<%=mb.getNick() %>">
+							<input type="hidden" name="user_img" value="<%=mb.getUser_img() %>">
 							<input type="hidden" name="location" value="<%=mb.getAddr() %>">
 							<label for="exampleFormControlTextarea1">상품 이미지 첨부</label>
 							
@@ -183,7 +184,7 @@
 							<div class="form-group">
 								<select class="form-control selectpicker"
 									data-style="btn btn-link" id="exampleFormControlSelect1" name="category" required>
-									<option selected disabled>상품 카테고리</option>
+									<option value="" selected disabled>상품 카테고리</option>
 									<option value="여성의류">여성의류</option>
 									<option value="남성의류">남성의류</option>
 									<option value="패션잡화">패션잡화</option>
@@ -201,9 +202,9 @@
 							<div class="form-group">
 								<select class="form-control selectpicker"
 									data-style="btn btn-link" id="exampleFormControlSelect1" name="condi" required>
-									<option selected disabled>상품 상태</option>
-									<option>새 것</option>
-									<option>중고</option>
+									<option value=""selected disabled>상품 상태</option>
+									<option value="새 것">새 것</option>
+									<option value="중고">중고</option>
 									<option value="거래 완료" disabled>거래 완료 (글수정 시 선택 가능합니다.)</option>
 								</select>
 							</div>
@@ -212,7 +213,7 @@
 							<div class="form-group">
 								<select class="form-control selectpicker"
 									data-style="btn btn-link" id="exampleFormControlSelect1" name="nego" required>
-									<option selected disabled>네고 가능 여부</option>
+									<option value="" selected disabled>네고 가능 여부</option>
 									<option value="가능">가능</option>
 									<option value="불가">불가</option>
 								</select>
