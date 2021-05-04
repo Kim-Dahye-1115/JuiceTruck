@@ -417,7 +417,7 @@ public String getProfile(String nick) {
 				if (rs.getString("user_img").equals("")) {
 					return "http://localhost:8088/Juice/person.png";
 				} else {
-					return "http://localhost:8088/Juice/upload/" + rs.getString("user_img");
+					return rs.getString("user_img");
 				}
 			}
 		} catch (Exception e) {

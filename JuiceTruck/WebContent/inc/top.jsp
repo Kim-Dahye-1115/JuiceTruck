@@ -33,7 +33,7 @@
     String nick = (String) session.getAttribute("nick");
     
     MemberDAO mdao = new MemberDAO();
-    String user_img = mdao.getProfile(nick);
+    String user_img = "./upload/"+mdao.getProfile(nick);
     
 	%>
 
